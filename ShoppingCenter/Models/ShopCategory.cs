@@ -4,7 +4,7 @@ namespace ShoppingCenter.Models
 {
     public class ShopCategory
     {
-        public int Id { get; set; }
-        public string CategoryName { get; set; }
+        public Guid ShopCategoryId { get; set; }
+        public string? ShopCategoryName { get; set; }
     }
 }

@@ -9,5 +9,6 @@ namespace ShoppingCenter.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the ShoppingCenterUser class
 public class ShoppingCenterUser : IdentityUser
 {
+
 }
 

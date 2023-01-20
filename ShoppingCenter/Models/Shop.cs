@@ -1,12 +1,15 @@
-﻿namespace ShoppingCenter.Models
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations;
+
+namespace ShoppingCenter.Models
 {
     public class Shop
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; } 
-        public string Level { get; set; }
-         
-
+        [Key]
+        public Guid ShopId { get; set; }
+        public ISet<ShopCategory>? Categories { get; set; }
+        public string? ShopName { get; set; }
+        public string? Description { get; set; } 
+        public string? Level { get; set; }
     }
 }
