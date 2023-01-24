@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShoppingCenter.Areas.Identity.Data;
+using ShoppingCenter.Services.ShopServices;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ContextConnection") ?? throw new InvalidOperationException("Connection string 'IdentityContextConnection' not found.");
@@ -11,6 +12,8 @@ builder.Services.AddDefaultIdentity<ShoppingCenterUser>(options => options.SignI
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IShopService, ShopService>();
 
 var app = builder.Build();
 

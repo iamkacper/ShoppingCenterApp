@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingCenter.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using ShoppingCenter.Areas.Identity.Data;
 namespace ShoppingCenter.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20230124183044_testA")]
+    partial class testA
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,31 +69,31 @@ namespace ShoppingCenter.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "dc9a7fe1-594b-4d20-8982-d7f91512f888",
+                            Id = "9bf9cd14-5427-4e46-a05a-2af73bcfeec4",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
-                            Id = "a74b1e0a-3dca-4d86-a664-eabb9717a768",
+                            Id = "1bc8f6d0-b437-4272-9fc8-aaa1bce5178a",
                             Name = "ClothesShopAdmin",
                             NormalizedName = "ClothesShopADMIN"
                         },
                         new
                         {
-                            Id = "07ee8508-ff88-497c-b2aa-caecd34e663b",
+                            Id = "507f88b9-de06-4a15-9281-65258a898b6d",
                             Name = "ToysShopAdmin",
                             NormalizedName = "ToysShopADMIN"
                         },
                         new
                         {
-                            Id = "968c6212-421a-400c-8f89-870af61d5d7b",
+                            Id = "e815ca28-8f22-4440-ba58-6f739b3741cb",
                             Name = "FoodShopAdmin",
                             NormalizedName = "FoodShopADMIN"
                         },
                         new
                         {
-                            Id = "c1f9862c-85d4-4a26-b652-2cbe012be60b",
+                            Id = "11e91ba9-9a55-44f6-8ff9-d9bbf5ce6797",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -347,7 +350,7 @@ namespace ShoppingCenter.Migrations
                     b.HasData(
                         new
                         {
-                            ItemId = new Guid("fd59ab0d-a8c8-4549-82e1-c39fea281b3f"),
+                            ItemId = new Guid("a33dc6c6-fc86-449a-aa40-0a85a05114b6"),
                             AvailabilityItem = 5,
                             PriceItem = 20m,
                             ShopId = new Guid("b4593455-0c90-4100-8a24-ae26f49a7c8a")
@@ -414,7 +417,7 @@ namespace ShoppingCenter.Migrations
                     b.HasData(
                         new
                         {
-                            ShopId = new Guid("e2a5c13e-533e-47a4-81d7-fad7ddde2073"),
+                            ShopId = new Guid("4a7584ac-4f84-461a-a396-df11b1b4e2fa"),
                             Description = "test",
                             Level = "1",
                             ShopName = "Testowy"
@@ -442,17 +445,17 @@ namespace ShoppingCenter.Migrations
                     b.HasData(
                         new
                         {
-                            ShopCategoryId = new Guid("8b061ee3-104f-4734-91b4-73435427beb4"),
+                            ShopCategoryId = new Guid("33073c7c-d781-488b-b0b0-53bdb2e2d5f9"),
                             ShopCategoryName = "ClothesShop"
                         },
                         new
                         {
-                            ShopCategoryId = new Guid("dfc47378-5606-4e17-8c36-2e1082d3a734"),
+                            ShopCategoryId = new Guid("ddf22316-0986-4709-a0f5-ab3b0d142a79"),
                             ShopCategoryName = "ToysShop"
                         },
                         new
                         {
-                            ShopCategoryId = new Guid("a297e5ff-3c24-42c5-b112-2e759e57fa29"),
+                            ShopCategoryId = new Guid("9ef783cf-6bc3-45ed-94d1-de66681d69b1"),
                             ShopCategoryName = "FoodShop"
                         });
                 });

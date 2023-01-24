@@ -35,20 +35,43 @@ public class IdentityContext : IdentityDbContext<ShoppingCenterUser>
             new ShopCategory { ShopCategoryId = Guid.NewGuid(), ShopCategoryName = "FoodShop" }
             );
 
-        builder.Entity<ItemCategory>().HasData(
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "T-Shirt" },
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Trousers" },
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Shoes" }, 
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Hoodie" },
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Teddy Bear" },
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "LEGO Bricks" },
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Ball" },
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Barbie doll" },
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Apple" },
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Potato" },
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Lemon" },
-            new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Orange" }
+        builder.Entity<Shop>().HasData(
+           new Shop { ShopId = Guid.NewGuid(), ShopName = "ClothesShop", Description = "Clothes shop, t-shirts, trouser and hoodies!", Level = "0" }
+           );
+
+        builder.Entity<Item>().HasData(
+            new Item { ItemId = Guid.NewGuid(), AvailabilityItem = 5, PriceItem = 59, ShopId = Guid.Parse("B4593455-0C90-4100-8A24-AE26F49A7C8A") }
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Trousers" },
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Shoes" }, 
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Hoodie" },
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Teddy Bear" },
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "LEGO Bricks" },
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Ball" },
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Barbie doll" },
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Apple" },
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Potato" },
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Lemon" },
+            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Orange" }
             );
+
+
+        builder.Entity<Item>().HasKey(e => e.ItemId);
+        builder.Entity<Item>().Property(e => e.NameItem);
+        builder.Entity<Item>().Property(e => e.PriceItem);
+        builder.Entity<Item>().Property(e => e.AvailabilityItem);
+        //builder.Entity<Item>().Property(e => e.ItemImageName);
+        builder.Entity<Item>().Property(e => e.DescriptionItem);
+
+        builder.Entity<Transaction>().HasKey(e => e.TransactionId);
+
+        builder.Entity<ItemTransaction>().HasKey(e => e.ItemTransactionId);
+        builder.Entity<ItemTransaction>().Property(e => e.PriceItem);
+
+        builder.Entity<CustomerShoppingCartItem>().HasKey(e => e.CustomerShoppingCartItemId);
+
+        builder.Entity<CustomerShoppingCart>().HasKey(e => e.CustomerId);
+
+        builder.Entity<ShoppingCenterUser>().HasKey(e => e.Id);
 
         base.OnModelCreating(builder);
         // Customize the ASP.NET Identity model and override the defaults if needed.
