@@ -50,6 +50,25 @@ public class IdentityContext : IdentityDbContext<ShoppingCenterUser>
             new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Orange" }
             );
 
+
+        builder.Entity<Item>().HasKey(e => e.ItemId);
+        builder.Entity<Item>().Property(e => e.NameItem);
+        builder.Entity<Item>().Property(e => e.PriceItem);
+        builder.Entity<Item>().Property(e => e.AvailabilityItem);
+        builder.Entity<Item>().Property(e => e.ItemImageName);
+        builder.Entity<Item>().Property(e => e.DescriptionItem);
+
+        builder.Entity<Transaction>().HasKey(e => e.TransactionId);
+
+        builder.Entity<ItemTransaction>().HasKey(e => e.ItemTransactionId);
+        builder.Entity<ItemTransaction>().Property(e => e.PriceItem);
+
+        builder.Entity<CustomerShoppingCartItem>().HasKey(e => e.CustomerShoppingCartItemId);
+
+        builder.Entity<CustomerShoppingCart>().HasKey(e => e.CustomerId);
+
+        builder.Entity<ShoppingCenterUser>().HasKey(e => e.Id);
+
         base.OnModelCreating(builder);
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.
