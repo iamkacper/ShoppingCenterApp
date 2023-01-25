@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ShoppingCenter.Migrations
 {
     /// <inheritdoc />
-    public partial class test1 : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -53,16 +53,29 @@ namespace ShoppingCenter.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    ItemCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ItemCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.ItemCategoryId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Items",
                 columns: table => new
                 {
-                    ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ItemId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NameItem = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ColorItem = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SizeItem = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AvailabilityItem = table.Column<int>(type: "int", nullable: false),
                     PriceItem = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ItemImageName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DescriptionItem = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -74,7 +87,8 @@ namespace ShoppingCenter.Migrations
                 name: "Shop",
                 columns: table => new
                 {
-                    ShopId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ShopId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ShopName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Level = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -226,21 +240,53 @@ namespace ShoppingCenter.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categories",
+                name: "ItemItemCategory",
                 columns: table => new
                 {
-                    ItemCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ItemCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    CategoriesItemCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    itemsItemId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categories", x => x.ItemCategoryId);
+                    table.PrimaryKey("PK_ItemItemCategory", x => new { x.CategoriesItemCategoryId, x.itemsItemId });
                     table.ForeignKey(
-                        name: "FK_Categories_Items_ItemId",
+                        name: "FK_ItemItemCategory_Categories_CategoriesItemCategoryId",
+                        column: x => x.CategoriesItemCategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "ItemCategoryId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ItemItemCategory_Items_itemsItemId",
+                        column: x => x.itemsItemId,
+                        principalTable: "Items",
+                        principalColumn: "ItemId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shop_Items",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ShopId = table.Column<int>(type: "int", nullable: false),
+                    ItemId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shop_Items", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Shop_Items_Items_ItemId",
                         column: x => x.ItemId,
                         principalTable: "Items",
-                        principalColumn: "ItemId");
+                        principalColumn: "ItemId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Shop_Items_Shop_ShopId",
+                        column: x => x.ShopId,
+                        principalTable: "Shop",
+                        principalColumn: "ShopId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,7 +295,7 @@ namespace ShoppingCenter.Migrations
                 {
                     ShopCategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ShopCategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShopId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    ShopId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -267,7 +313,8 @@ namespace ShoppingCenter.Migrations
                 {
                     CustomerShoppingCartItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CustomerShoppingCartId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ItemId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -279,11 +326,10 @@ namespace ShoppingCenter.Migrations
                         principalColumn: "CustomerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CustomerShoppingCartItems_Items_ItemId",
-                        column: x => x.ItemId,
+                        name: "FK_CustomerShoppingCartItems_Items_ItemId1",
+                        column: x => x.ItemId1,
                         principalTable: "Items",
-                        principalColumn: "ItemId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ItemId");
                 });
 
             migrationBuilder.CreateTable(
@@ -293,17 +339,17 @@ namespace ShoppingCenter.Migrations
                     ItemTransactionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     TransactionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ItemId1 = table.Column<int>(type: "int", nullable: true),
                     PriceItem = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Transaction_Items", x => x.ItemTransactionId);
                     table.ForeignKey(
-                        name: "FK_Transaction_Items_Items_ItemId",
-                        column: x => x.ItemId,
+                        name: "FK_Transaction_Items_Items_ItemId1",
+                        column: x => x.ItemId1,
                         principalTable: "Items",
-                        principalColumn: "ItemId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ItemId");
                     table.ForeignKey(
                         name: "FK_Transaction_Items_Transactions_TransactionId",
                         column: x => x.TransactionId,
@@ -313,44 +359,34 @@ namespace ShoppingCenter.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                table: "Items",
+                columns: new[] { "ItemId", "AvailabilityItem", "ColorItem", "DescriptionItem", "NameItem", "PriceItem", "SizeItem", "Url" },
                 values: new object[,]
                 {
-                    { "0e7305c7-20b5-46c3-9244-b27f2b970573", null, "ClothesShopAdmin", "ClothesShopADMIN" },
-                    { "329a0dd7-9a58-439c-b7d6-799dcecdeb7e", null, "SuperAdmin", "SUPERADMIN" },
-                    { "42685d7c-30ad-433b-ac5f-5e4e4869fea4", null, "ToysShopAdmin", "ToysShopADMIN" },
-                    { "b2a29728-1838-4086-a898-97ccbc121ab9", null, "FoodShopAdmin", "FoodShopADMIN" },
-                    { "c78d2fe5-c43e-40c0-bb8b-e77e51efb203", null, "User", "USER" }
+                    { 1, 5, "White", null, "T shirt", 59m, "S", "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+                    { 2, 5, "White", null, "T shirt", 59m, "S", "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+                    { 3, 5, "White", null, "T shirt", 59m, "S", "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+                    { 4, 5, "White", null, "T shirt", 59m, "S", "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
+                    { 5, 5, "White", null, "T shirt", 59m, "S", "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" }
                 });
 
             migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "ItemCategoryId", "ItemCategoryName", "ItemId" },
+                table: "Shop",
+                columns: new[] { "ShopId", "Description", "Level", "ShopName" },
                 values: new object[,]
                 {
-                    { new Guid("08bf3344-9b77-410f-b313-30980d5673ea"), "LEGO Bricks", null },
-                    { new Guid("10ad2415-cf83-4f9d-8acc-44455bb8cb60"), "Trousers", null },
-                    { new Guid("3fabdc8a-1098-465d-b8a6-88d51bc30f80"), "Barbie doll", null },
-                    { new Guid("5933ebf7-f7ce-46c1-9a34-c3587f26a8d6"), "T-Shirt", null },
-                    { new Guid("7499a8ed-40cf-43b6-99a4-44b15de3c713"), "Apple", null },
-                    { new Guid("7d1fc029-1d5f-4772-9291-06840046f661"), "Potato", null },
-                    { new Guid("9a450fd7-9321-48cf-8d3f-f09ccbf0eed5"), "Hoodie", null },
-                    { new Guid("aeaa1ccf-a11d-40a4-8244-1fba5e9414d4"), "Lemon", null },
-                    { new Guid("b0abc8fd-3430-4e82-80d8-4762755942c9"), "Shoes", null },
-                    { new Guid("bd414305-8be4-4fd4-b77a-26b3700df732"), "Ball", null },
-                    { new Guid("be63f0cc-e30b-495e-a6ab-839fb3009e94"), "Teddy Bear", null },
-                    { new Guid("d6cae0f9-9ecc-4da5-99a0-942c7c1b816a"), "Orange", null }
+                    { 1, "Clothes shop, t-shirts, trouser and hoodies!", "0", "ClothesShop" },
+                    { 2, "Clothes shop, t-shirts, trouser and hoodies!", "0", "ClothesShop" }
                 });
 
             migrationBuilder.InsertData(
-                table: "ShopCategory",
-                columns: new[] { "ShopCategoryId", "ShopCategoryName", "ShopId" },
+                table: "Shop_Items",
+                columns: new[] { "Id", "ItemId", "ShopId" },
                 values: new object[,]
                 {
-                    { new Guid("034b55fd-2941-4244-bb02-5a74564629b7"), "FoodShop", null },
-                    { new Guid("9a4e92d2-a381-431e-bb02-a6874026cf65"), "ClothesShop", null },
-                    { new Guid("9ddd8d30-9b93-41aa-b63a-d583efcfd700"), "ToysShop", null }
+                    { 1, 1, 1 },
+                    { 2, 1, 1 },
+                    { 3, 1, 1 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -393,19 +429,14 @@ namespace ShoppingCenter.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_ItemId",
-                table: "Categories",
-                column: "ItemId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CustomerShoppingCartItems_CustomerShoppingCartId",
                 table: "CustomerShoppingCartItems",
                 column: "CustomerShoppingCartId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerShoppingCartItems_ItemId",
+                name: "IX_CustomerShoppingCartItems_ItemId1",
                 table: "CustomerShoppingCartItems",
-                column: "ItemId");
+                column: "ItemId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomersShoppingCarts_CustomerId1",
@@ -413,14 +444,29 @@ namespace ShoppingCenter.Migrations
                 column: "CustomerId1");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ItemItemCategory_itemsItemId",
+                table: "ItemItemCategory",
+                column: "itemsItemId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shop_Items_ItemId",
+                table: "Shop_Items",
+                column: "ItemId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shop_Items_ShopId",
+                table: "Shop_Items",
+                column: "ShopId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShopCategory_ShopId",
                 table: "ShopCategory",
                 column: "ShopId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Transaction_Items_ItemId",
+                name: "IX_Transaction_Items_ItemId1",
                 table: "Transaction_Items",
-                column: "ItemId");
+                column: "ItemId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transaction_Items_TransactionId",
@@ -452,10 +498,13 @@ namespace ShoppingCenter.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "CustomerShoppingCartItems");
 
             migrationBuilder.DropTable(
-                name: "CustomerShoppingCartItems");
+                name: "ItemItemCategory");
+
+            migrationBuilder.DropTable(
+                name: "Shop_Items");
 
             migrationBuilder.DropTable(
                 name: "ShopCategory");
@@ -468,6 +517,9 @@ namespace ShoppingCenter.Migrations
 
             migrationBuilder.DropTable(
                 name: "CustomersShoppingCarts");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Shop");

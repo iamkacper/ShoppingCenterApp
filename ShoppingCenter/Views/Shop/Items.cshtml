@@ -1,0 +1,35 @@
+﻿@model Shop
+
+<table>
+    <tr>
+        <th>Item Name</th>
+        <th>Colour</th>
+        <th>Size</th>
+        <th>Availability</th>
+        <th>Price</th>
+        <th>Descriptions</th>
+    </tr>
+    @foreach(var item in Model.Shop_Items)
+    {
+        <tr>
+            <td>
+                @item.Item.NameItem
+            </td>
+            <td>
+                @item.Item.ColorItem
+            </td>
+                <td>
+                @item.Item.SizeItem
+                </td>
+            <td>
+                @item.Item.AvailabilityItem
+            </td>
+            <td>
+                @item.Item.PriceItem
+            </td>
+            <td>
+                @item.Item.DescriptionItem
+            </td>
+        </tr>
+    }
+</table>

@@ -15,43 +15,67 @@ public class IdentityContext : IdentityDbContext<ShoppingCenterUser>
     public DbSet<CustomerShoppingCart> CustomersShoppingCarts { get; set; }
     public DbSet<ShoppingCenterUser> Customers { get; set; }
     public DbSet<CustomerShoppingCartItem> CustomerShoppingCartItems { get; set; }
+    public DbSet<Shop_Items> Shop_Items { get; set; }
     public IdentityContext(DbContextOptions<IdentityContext> options)
         : base(options)
     { }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<IdentityRole>().HasData(
-            new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "SuperAdmin", NormalizedName = "SUPERADMIN" },
-            new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "ClothesShopAdmin", NormalizedName = "ClothesShopADMIN" },
-            new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "ToysShopAdmin", NormalizedName = "ToysShopADMIN" },
-            new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "FoodShopAdmin", NormalizedName = "FoodShopADMIN" },
-            new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "User", NormalizedName = "USER" }
-            );
+        builder.Entity<Shop_Items>()
+            .HasOne(x => x.Shop)
+            .WithMany(x => x.Shop_Items)
+            .HasForeignKey(x => x.ShopId);
 
-        builder.Entity<ShopCategory>().HasData(
-            new ShopCategory { ShopCategoryId = Guid.NewGuid(), ShopCategoryName = "ClothesShop" },
-            new ShopCategory { ShopCategoryId = Guid.NewGuid(), ShopCategoryName = "ToysShop" },
-            new ShopCategory { ShopCategoryId = Guid.NewGuid(), ShopCategoryName = "FoodShop" }
-            );
+        builder.Entity<Shop_Items>()
+            .HasOne(x => x.Item)
+            .WithMany(x => x.Shop_Items)
+            .HasForeignKey(x => x.ItemId);
+
+
+
+        //builder.Entity<IdentityRole>().HasData(
+        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "SuperAdmin", NormalizedName = "SUPERADMIN" },
+        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "ClothesShopAdmin", NormalizedName = "ClothesShopADMIN" },
+        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "ToysShopAdmin", NormalizedName = "ToysShopADMIN" },
+        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "FoodShopAdmin", NormalizedName = "FoodShopADMIN" },
+        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "User", NormalizedName = "USER" }
+        //    );
+
+        //builder.Entity<ShopCategory>().HasData(
+        //    new ShopCategory { ShopCategoryId = Guid.NewGuid(), ShopCategoryName = "ClothesShop" },
+        //    new ShopCategory { ShopCategoryId = Guid.NewGuid(), ShopCategoryName = "ToysShop" },
+        //    new ShopCategory { ShopCategoryId = Guid.NewGuid(), ShopCategoryName = "FoodShop" }
+        //    );
 
         builder.Entity<Shop>().HasData(
-           new Shop { ShopId = Guid.NewGuid(), ShopName = "ClothesShop", Description = "Clothes shop, t-shirts, trouser and hoodies!", Level = "0" }
+           new Shop { ShopId = 1, ShopName = "Clothes Shop", Description = "Clothes shop, t-shirts, trouser and hoodies!", Level = "0" },
+           new Shop { ShopId = 2, ShopName = "Toys Shop", Description = "Toys shop, teddy bears, LEGO and many more toys for you!", Level = "1" },
+           new Shop { ShopId = 3, ShopName = "Toys Shop", Description = "Food shop, vegetables, fruits, fresh juice.", Level = "1" }
            );
 
         builder.Entity<Item>().HasData(
-            new Item { ItemId = Guid.NewGuid(), AvailabilityItem = 5, PriceItem = 59, ShopId = Guid.Parse("B4593455-0C90-4100-8A24-AE26F49A7C8A") }
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Trousers" },
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Shoes" }, 
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Hoodie" },
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Teddy Bear" },
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "LEGO Bricks" },
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Ball" },
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Barbie doll" },
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Apple" },
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Potato" },
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Lemon" },
-            //new ItemCategory { ItemCategoryId = Guid.NewGuid(), ItemCategoryName = "Orange" }
+            new Item { ItemId = 1,NameItem="T shirt",ColorItem="WHITE",SizeItem="S",Url= "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", AvailabilityItem = 5, PriceItem = 59 },
+            new Item { ItemId = 2,NameItem="T shirt",ColorItem="BLACK",SizeItem="M",Url= "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", AvailabilityItem = 7, PriceItem = 65 },
+            new Item { ItemId = 3,NameItem="T shirt",ColorItem="BLUE WITH PRINT",SizeItem="L",Url= "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", AvailabilityItem = 5, PriceItem = 79 },
+            new Item { ItemId = 4,NameItem="Trousers",ColorItem="Black",SizeItem="42",Url= "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", AvailabilityItem = 5, PriceItem = 99 },
+            new Item { ItemId = 5,NameItem="Jacket",ColorItem="Green",SizeItem="44",Url= "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", AvailabilityItem = 5, PriceItem = 129 },
+            new Item { ItemId = 6,NameItem="LEGO",ColorItem="White",SizeItem="1000 bricks",Url= "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", AvailabilityItem = 5, PriceItem = 59 },
+            new Item { ItemId = 7,NameItem="LEGO",ColorItem="White",SizeItem="S",Url= "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", AvailabilityItem = 5, PriceItem = 59 },
+            new Item { ItemId = 8,NameItem="banana",ColorItem="White",SizeItem="S",Url= "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", AvailabilityItem = 5, PriceItem = 59 },
+            new Item { ItemId = 9,NameItem="apple",ColorItem="White",SizeItem="S",Url= "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", AvailabilityItem = 5, PriceItem = 59 }
+
+            );
+        builder.Entity<Shop_Items>().HasData(
+            new Shop_Items() { Id = 1, ItemId = 1, ShopId = 1 },
+            new Shop_Items() { Id = 2, ItemId = 2, ShopId = 1 },
+            new Shop_Items() { Id = 3, ItemId = 3, ShopId = 1 },
+            new Shop_Items() { Id = 4, ItemId = 4, ShopId = 1 },
+            new Shop_Items() { Id = 5, ItemId = 5, ShopId = 1 },
+            new Shop_Items() { Id = 6, ItemId = 6, ShopId = 2 },
+            new Shop_Items() { Id = 7, ItemId = 7, ShopId = 2 },
+            new Shop_Items() { Id = 8, ItemId = 8, ShopId = 3 },
+            new Shop_Items() { Id = 9, ItemId = 9, ShopId = 3 }
             );
 
 

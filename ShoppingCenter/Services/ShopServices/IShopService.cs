@@ -7,6 +7,6 @@ namespace ShoppingCenter.Services.ShopServices
         List<Shop> GetAll();
         Shop GetById(string id);
         void Edit(Shop shop, string id);
-        Shop GetItems(string id);
+        Shop GetItems(int id);
     }
 }

@@ -36,9 +36,9 @@ namespace ShoppingCenter.Services.ShopServices
             return shop;
         }
 
-        public Shop GetItems(string id)
+        public Shop GetItems(int id)
         {
-            var items = _context.Shop.Include(x => x.Items).FirstOrDefault(x => x.ShopId.ToString() == id);
+            var items = _context.Shop.Include(x => x.Shop_Items).ThenInclude(x => x.Item).FirstOrDefault(x => x.ShopId == id);
             return items;
         }
     }

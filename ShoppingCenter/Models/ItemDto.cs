@@ -11,7 +11,7 @@ namespace ShoppingCenter.Models
         public ItemDto() { }
         public ItemDto(Item item)
         {
-            ItemId = item.ItemId.ToString();
+            ItemId = item.ItemId;
             NameItem = item.NameItem;
             AvailabilityItem = item.AvailabilityItem;
             ColorItem = item.ColorItem;
@@ -20,7 +20,7 @@ namespace ShoppingCenter.Models
         }
 
         [HiddenInput]
-        public string? ItemId { get; set; }
+        public int ItemId { get; set; }
         public string? NameItem { get; set; }
         public int AvailabilityItem { get; set; }
         public string? ColorItem { get; set; }
@@ -31,7 +31,7 @@ namespace ShoppingCenter.Models
         public List<string>? Categories { get; set; }
         public Item ConvertTo() => new Item()
         {
-            ItemId = Guid.NewGuid(),
+            ItemId =this.ItemId ,
             NameItem = this.NameItem,
             PriceItem = this.PriceItem,
             ColorItem = this.ColorItem,

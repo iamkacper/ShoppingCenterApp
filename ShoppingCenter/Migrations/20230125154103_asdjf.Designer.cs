@@ -12,8 +12,8 @@ using ShoppingCenter.Areas.Identity.Data;
 namespace ShoppingCenter.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230124183044_testA")]
-    partial class testA
+    [Migration("20230125154103_asdjf")]
+    partial class asdjf
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,8 +30,8 @@ namespace ShoppingCenter.Migrations
                     b.Property<Guid>("CategoriesItemCategoryId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("itemsItemId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("itemsItemId")
+                        .HasColumnType("int");
 
                     b.HasKey("CategoriesItemCategoryId", "itemsItemId");
 
@@ -65,38 +65,6 @@ namespace ShoppingCenter.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "9bf9cd14-5427-4e46-a05a-2af73bcfeec4",
-                            Name = "SuperAdmin",
-                            NormalizedName = "SUPERADMIN"
-                        },
-                        new
-                        {
-                            Id = "1bc8f6d0-b437-4272-9fc8-aaa1bce5178a",
-                            Name = "ClothesShopAdmin",
-                            NormalizedName = "ClothesShopADMIN"
-                        },
-                        new
-                        {
-                            Id = "507f88b9-de06-4a15-9281-65258a898b6d",
-                            Name = "ToysShopAdmin",
-                            NormalizedName = "ToysShopADMIN"
-                        },
-                        new
-                        {
-                            Id = "e815ca28-8f22-4440-ba58-6f739b3741cb",
-                            Name = "FoodShopAdmin",
-                            NormalizedName = "FoodShopADMIN"
-                        },
-                        new
-                        {
-                            Id = "11e91ba9-9a55-44f6-8ff9-d9bbf5ce6797",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -302,20 +270,25 @@ namespace ShoppingCenter.Migrations
                     b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int?>("ItemId1")
+                        .HasColumnType("int");
+
                     b.HasKey("CustomerShoppingCartItemId");
 
                     b.HasIndex("CustomerShoppingCartId");
 
-                    b.HasIndex("ItemId");
+                    b.HasIndex("ItemId1");
 
                     b.ToTable("CustomerShoppingCartItems");
                 });
 
             modelBuilder.Entity("ShoppingCenter.Models.Item", b =>
                 {
-                    b.Property<Guid>("ItemId")
+                    b.Property<int>("ItemId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemId"));
 
                     b.Property<int>("AvailabilityItem")
                         .HasColumnType("int");
@@ -332,9 +305,6 @@ namespace ShoppingCenter.Migrations
                     b.Property<decimal>("PriceItem")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("ShopId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("SizeItem")
                         .HasColumnType("nvarchar(max)");
 
@@ -343,17 +313,98 @@ namespace ShoppingCenter.Migrations
 
                     b.HasKey("ItemId");
 
-                    b.HasIndex("ShopId");
-
                     b.ToTable("Items");
 
                     b.HasData(
                         new
                         {
-                            ItemId = new Guid("a33dc6c6-fc86-449a-aa40-0a85a05114b6"),
+                            ItemId = 1,
                             AvailabilityItem = 5,
-                            PriceItem = 20m,
-                            ShopId = new Guid("b4593455-0c90-4100-8a24-ae26f49a7c8a")
+                            ColorItem = "WHITE",
+                            NameItem = "T shirt",
+                            PriceItem = 59m,
+                            SizeItem = "S",
+                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        },
+                        new
+                        {
+                            ItemId = 2,
+                            AvailabilityItem = 7,
+                            ColorItem = "BLACK",
+                            NameItem = "T shirt",
+                            PriceItem = 65m,
+                            SizeItem = "M",
+                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        },
+                        new
+                        {
+                            ItemId = 3,
+                            AvailabilityItem = 5,
+                            ColorItem = "BLUE WITH PRINT",
+                            NameItem = "T shirt",
+                            PriceItem = 79m,
+                            SizeItem = "L",
+                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        },
+                        new
+                        {
+                            ItemId = 4,
+                            AvailabilityItem = 5,
+                            ColorItem = "Black",
+                            NameItem = "Trousers",
+                            PriceItem = 99m,
+                            SizeItem = "42",
+                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        },
+                        new
+                        {
+                            ItemId = 5,
+                            AvailabilityItem = 5,
+                            ColorItem = "Green",
+                            NameItem = "Jacket",
+                            PriceItem = 129m,
+                            SizeItem = "44",
+                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        },
+                        new
+                        {
+                            ItemId = 6,
+                            AvailabilityItem = 5,
+                            ColorItem = "White",
+                            NameItem = "LEGO",
+                            PriceItem = 59m,
+                            SizeItem = "1000 bricks",
+                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        },
+                        new
+                        {
+                            ItemId = 7,
+                            AvailabilityItem = 5,
+                            ColorItem = "White",
+                            NameItem = "LEGO",
+                            PriceItem = 59m,
+                            SizeItem = "S",
+                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        },
+                        new
+                        {
+                            ItemId = 8,
+                            AvailabilityItem = 5,
+                            ColorItem = "White",
+                            NameItem = "banana",
+                            PriceItem = 59m,
+                            SizeItem = "S",
+                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        },
+                        new
+                        {
+                            ItemId = 9,
+                            AvailabilityItem = 5,
+                            ColorItem = "White",
+                            NameItem = "apple",
+                            PriceItem = 59m,
+                            SizeItem = "S",
+                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         });
                 });
 
@@ -380,6 +431,9 @@ namespace ShoppingCenter.Migrations
                     b.Property<Guid>("ItemId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int?>("ItemId1")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("PriceItem")
                         .HasColumnType("decimal(18,2)");
 
@@ -388,7 +442,7 @@ namespace ShoppingCenter.Migrations
 
                     b.HasKey("ItemTransactionId");
 
-                    b.HasIndex("ItemId");
+                    b.HasIndex("ItemId1");
 
                     b.HasIndex("TransactionId");
 
@@ -397,9 +451,11 @@ namespace ShoppingCenter.Migrations
 
             modelBuilder.Entity("ShoppingCenter.Models.Shop", b =>
                 {
-                    b.Property<Guid>("ShopId")
+                    b.Property<int>("ShopId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShopId"));
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -417,10 +473,24 @@ namespace ShoppingCenter.Migrations
                     b.HasData(
                         new
                         {
-                            ShopId = new Guid("4a7584ac-4f84-461a-a396-df11b1b4e2fa"),
-                            Description = "test",
+                            ShopId = 1,
+                            Description = "Clothes shop, t-shirts, trouser and hoodies!",
+                            Level = "0",
+                            ShopName = "Clothes Shop"
+                        },
+                        new
+                        {
+                            ShopId = 2,
+                            Description = "Toys shop, teddy bears, LEGO and many more toys for you!",
                             Level = "1",
-                            ShopName = "Testowy"
+                            ShopName = "Toys Shop"
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            Description = "Food shop, vegetables, fruits, fresh juice.",
+                            Level = "1",
+                            ShopName = "Toys Shop"
                         });
                 });
 
@@ -433,30 +503,92 @@ namespace ShoppingCenter.Migrations
                     b.Property<string>("ShopCategoryName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("ShopId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("ShopId")
+                        .HasColumnType("int");
 
                     b.HasKey("ShopCategoryId");
 
                     b.HasIndex("ShopId");
 
                     b.ToTable("ShopCategory");
+                });
+
+            modelBuilder.Entity("ShoppingCenter.Models.Shop_Items", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShopId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemId");
+
+                    b.HasIndex("ShopId");
+
+                    b.ToTable("Shop_Items");
 
                     b.HasData(
                         new
                         {
-                            ShopCategoryId = new Guid("33073c7c-d781-488b-b0b0-53bdb2e2d5f9"),
-                            ShopCategoryName = "ClothesShop"
+                            Id = 1,
+                            ItemId = 1,
+                            ShopId = 1
                         },
                         new
                         {
-                            ShopCategoryId = new Guid("ddf22316-0986-4709-a0f5-ab3b0d142a79"),
-                            ShopCategoryName = "ToysShop"
+                            Id = 2,
+                            ItemId = 2,
+                            ShopId = 1
                         },
                         new
                         {
-                            ShopCategoryId = new Guid("9ef783cf-6bc3-45ed-94d1-de66681d69b1"),
-                            ShopCategoryName = "FoodShop"
+                            Id = 3,
+                            ItemId = 3,
+                            ShopId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ItemId = 4,
+                            ShopId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ItemId = 5,
+                            ShopId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ItemId = 6,
+                            ShopId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ItemId = 7,
+                            ShopId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ItemId = 8,
+                            ShopId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ItemId = 9,
+                            ShopId = 3
                         });
                 });
 
@@ -564,33 +696,18 @@ namespace ShoppingCenter.Migrations
 
                     b.HasOne("ShoppingCenter.Models.Item", "Item")
                         .WithMany("CustomerShoppingCartItem")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ItemId1");
 
                     b.Navigation("CustomerShoppingCart");
 
                     b.Navigation("Item");
                 });
 
-            modelBuilder.Entity("ShoppingCenter.Models.Item", b =>
-                {
-                    b.HasOne("ShoppingCenter.Models.Shop", "Shop")
-                        .WithMany("Items")
-                        .HasForeignKey("ShopId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Shop");
-                });
-
             modelBuilder.Entity("ShoppingCenter.Models.ItemTransaction", b =>
                 {
                     b.HasOne("ShoppingCenter.Models.Item", "Item")
                         .WithMany("ItemTransactions")
-                        .HasForeignKey("ItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ItemId1");
 
                     b.HasOne("ShoppingCenter.Models.Transaction", "Transaction")
                         .WithMany("ItemsTransaction")
@@ -608,6 +725,25 @@ namespace ShoppingCenter.Migrations
                     b.HasOne("ShoppingCenter.Models.Shop", null)
                         .WithMany("Categories")
                         .HasForeignKey("ShopId");
+                });
+
+            modelBuilder.Entity("ShoppingCenter.Models.Shop_Items", b =>
+                {
+                    b.HasOne("ShoppingCenter.Models.Item", "Item")
+                        .WithMany("Shop_Items")
+                        .HasForeignKey("ItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ShoppingCenter.Models.Shop", "Shop")
+                        .WithMany("Shop_Items")
+                        .HasForeignKey("ShopId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Item");
+
+                    b.Navigation("Shop");
                 });
 
             modelBuilder.Entity("ShoppingCenter.Models.Transaction", b =>
@@ -629,13 +765,15 @@ namespace ShoppingCenter.Migrations
                     b.Navigation("CustomerShoppingCartItem");
 
                     b.Navigation("ItemTransactions");
+
+                    b.Navigation("Shop_Items");
                 });
 
             modelBuilder.Entity("ShoppingCenter.Models.Shop", b =>
                 {
                     b.Navigation("Categories");
 
-                    b.Navigation("Items");
+                    b.Navigation("Shop_Items");
                 });
 
             modelBuilder.Entity("ShoppingCenter.Models.Transaction", b =>

@@ -31,10 +31,11 @@ namespace ShoppingCenter.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Items(string id)
+        public IActionResult Items(int id)
         {
             var items = _service.GetItems(id);
             return View(items);
         }
+
     }
 }
