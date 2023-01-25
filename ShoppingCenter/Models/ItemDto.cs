@@ -13,7 +13,6 @@ namespace ShoppingCenter.Models
         {
             ItemId = item.ItemId;
             NameItem = item.NameItem;
-            AvailabilityItem = item.AvailabilityItem;
             ColorItem = item.ColorItem;
             PriceItem = item.PriceItem;
             DescriptionItem = item.DescriptionItem;
@@ -22,7 +21,6 @@ namespace ShoppingCenter.Models
         [HiddenInput]
         public int ItemId { get; set; }
         public string? NameItem { get; set; }
-        public int AvailabilityItem { get; set; }
         public string? ColorItem { get; set; }
         public decimal PriceItem { get; set; }
         public string? DescriptionItem { get; set; }
@@ -35,7 +33,6 @@ namespace ShoppingCenter.Models
             NameItem = this.NameItem,
             PriceItem = this.PriceItem,
             ColorItem = this.ColorItem,
-            AvailabilityItem = this.AvailabilityItem,
             DescriptionItem = this.DescriptionItem,
             Categories = (ISet<ItemCategory>)AssignCategories(Categories)
         };

@@ -293,7 +293,7 @@ namespace ShoppingCenter.Migrations
                     b.Property<int>("AvailabilityItem")
                         .HasColumnType("int");
 
-                    b.Property<string>("ColorItem")
+                    b.Property<string>("ColourItem")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DescriptionItem")

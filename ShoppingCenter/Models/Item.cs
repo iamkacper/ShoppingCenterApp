@@ -9,7 +9,6 @@ namespace ShoppingCenter.Models
         public string? NameItem { get; set; }
         public string? ColorItem { get; set; }
         public string? SizeItem { get; set; }
-        public int AvailabilityItem { get; set; }
         public decimal PriceItem { get; set; }
         public string? Url { get; set; }
         public string? DescriptionItem { get; set; }

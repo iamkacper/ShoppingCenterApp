@@ -1,11 +1,10 @@
 ﻿@model Shop
 
-<table>
+<table style ="width:100%">
     <tr>
         <th>Item Name</th>
         <th>Colour</th>
         <th>Size</th>
-        <th>Availability</th>
         <th>Price</th>
         <th>Descriptions</th>
     </tr>
@@ -18,11 +17,8 @@
             <td>
                 @item.Item.ColorItem
             </td>
-                <td>
-                @item.Item.SizeItem
-                </td>
             <td>
-                @item.Item.AvailabilityItem
+                @item.Item.SizeItem
             </td>
             <td>
                 @item.Item.PriceItem
