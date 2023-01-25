@@ -13,6 +13,12 @@ namespace ShoppingCenter.Services.ShopServices
             _context = context;
         }
 
+        public void Create(Shop shop, string id)
+        {
+            _context.Update(shop);
+            _context.SaveChanges();
+        }
+
         public void Edit(Shop shop, string id)
         {
             _context.Update(shop);

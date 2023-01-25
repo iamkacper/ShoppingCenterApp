@@ -31,6 +31,13 @@ namespace ShoppingCenter.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public IActionResult CreateShop(string id, [Bind("ShopId,ShopName,Description,Level")] Shop shop)
+        {
+            _service.Create(shop, id);
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Items(int id)
         {
             var items = _service.GetItems(id);
