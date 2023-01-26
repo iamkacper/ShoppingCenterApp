@@ -1,31 +1,25 @@
 ﻿@model Shop
 
-<table style ="width:100%">
-    <tr>
-        <th>Item Name</th>
-        <th>Colour</th>
-        <th>Size</th>
-        <th>Price</th>
-        <th>Descriptions</th>
-    </tr>
-    @foreach(var item in Model.Shop_Items)
+
+<a asp-action="AddItemToShop" asp-controller="Item" asp-route-id="@Model.ShopId" class="btn btn-primary d-inline-block m-1">Add item to shop</a>
+
+
+<div class="row row-cols-3 card-deck">
+    @foreach (var item in Model.Shop_Items)
     {
-        <tr>
-            <td>
-                @item.Item.NameItem
-            </td>
-            <td>
-                @item.Item.ColorItem
-            </td>
-            <td>
-                @item.Item.SizeItem
-            </td>
-            <td>
-                @item.Item.PriceItem
-            </td>
-            <td>
-                @item.Item.DescriptionItem
-            </td>
-        </tr>
+        <div class="container">
+            <h2>Clothes</h2>
+            <div class="card" style="width:400px">
+                <img class="card-img-top" src="@item.Item.Url" alt="Card image" style="width:100%">
+                <div class="card-body">
+                    <h4 class="card-title"> @item.Item.NameItem</h4>
+                    <p class="card-text">Price: @item.Item.PriceItem</p>
+                    <a asp-action="Buy" class="btn btn-danger d-inline-block m-1">Buy</a>
+                    <a asp-action="Edit" asp-controller="Item" asp-route-id="@item.ItemId" class="btn btn-primary d-inline-block m-1">Edit</a>
+                    <a asp-action="Delete" asp-controller="Item" asp-route-id="@item.ItemId" class="btn btn-primary d-inline-block m-1">Delete</a>
+                </div>
+            </div>
+            <br>
+        </div>
     }
-</table>
+</div>

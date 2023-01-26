@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoppingCenter.Areas.Identity.Data;
 using ShoppingCenter.Models;
+using ShoppingCenter.Models.ViewModels;
 
 namespace ShoppingCenter.Services.ShopServices
 {
@@ -13,9 +14,27 @@ namespace ShoppingCenter.Services.ShopServices
             _context = context;
         }
 
-        public void Create(Shop shop, string id)
+        public void Create(ShopVm shop)
         {
-            _context.Update(shop);
+            Shop result = new Shop()
+            {
+                ShopId = shop.ShopId,
+                ShopName = shop.ShopName,
+                Description = shop.Description,
+                Level = shop.Level
+            };
+            _context.Shop.Add(result);
+            _context.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            var shopToDelete = _context.Shop.FirstOrDefault(x => x.ShopId == id);
+            if(shopToDelete == null)
+            {
+                return;
+            }
+            _context.Shop.Remove(shopToDelete);
             _context.SaveChanges();
         }
 

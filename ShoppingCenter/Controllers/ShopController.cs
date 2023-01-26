@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingCenter.Models;
+using ShoppingCenter.Models.ViewModels;
 using ShoppingCenter.Services.ShopServices;
 
 namespace ShoppingCenter.Controllers
@@ -31,10 +32,15 @@ namespace ShoppingCenter.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public IActionResult CreateShop(string id, [Bind("ShopId,ShopName,Description,Level")] Shop shop)
+        public IActionResult Create()
         {
-            _service.Create(shop, id);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateShop(ShopVm shop)
+        {
+            _service.Create(shop);
             return RedirectToAction("Index");
         }
 
@@ -42,6 +48,12 @@ namespace ShoppingCenter.Controllers
         {
             var items = _service.GetItems(id);
             return View(items);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            _service.Delete(id);
+            return RedirectToAction("Index");
         }
 
     }

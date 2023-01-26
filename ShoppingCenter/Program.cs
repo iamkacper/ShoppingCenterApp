@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShoppingCenter.Areas.Identity.Data;
+using ShoppingCenter.Services.ItemServices;
 using ShoppingCenter.Services.ShopServices;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddDefaultIdentity<ShoppingCenterUser>(options => options.SignI
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IShopService, ShopService>();
+builder.Services.AddScoped<IItemService, ItemService>();
 
 var app = builder.Build();
 
