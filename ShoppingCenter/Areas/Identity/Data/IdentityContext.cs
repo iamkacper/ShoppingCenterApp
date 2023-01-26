@@ -6,7 +6,7 @@ using ShoppingCenter.Models;
 
 namespace ShoppingCenter.Areas.Identity.Data;
 
-public class IdentityContext : IdentityDbContext<ShoppingCenterUser>
+public class IdentityContext : IdentityDbContext<ShoppingCenterUser,IdentityRole,string>
 {
     public DbSet<ItemCategory> Categories { get; set; }
     public DbSet<Item> Items { get; set; }

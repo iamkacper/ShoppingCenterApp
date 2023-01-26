@@ -12,8 +12,8 @@ using ShoppingCenter.Areas.Identity.Data;
 namespace ShoppingCenter.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230125213431_koniecpracynadzisiaj")]
-    partial class koniecpracynadzisiaj
+    [Migration("20230126171043_end")]
+    partial class end
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -290,7 +290,7 @@ namespace ShoppingCenter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemId"));
 
-                    b.Property<string>("ColourItem")
+                    b.Property<string>("ColorItem")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DescriptionItem")
@@ -316,7 +316,7 @@ namespace ShoppingCenter.Migrations
                         new
                         {
                             ItemId = 1,
-                            ColorItem = "WHITE",
+                            ColorItem = "White",
                             DescriptionItem = "Unisex t-shirt",
                             NameItem = "T shirt",
                             PriceItem = 49m,
@@ -326,7 +326,7 @@ namespace ShoppingCenter.Migrations
                         new
                         {
                             ItemId = 2,
-                            ColorItem = "BLACK",
+                            ColorItem = "Black",
                             DescriptionItem = "Unisex t-shirt",
                             NameItem = "T shirt",
                             PriceItem = 49m,
@@ -336,7 +336,7 @@ namespace ShoppingCenter.Migrations
                         new
                         {
                             ItemId = 3,
-                            ColorItem = "BLUE WITH PRINT",
+                            ColorItem = "Blue with print",
                             DescriptionItem = "T-shirt for men",
                             NameItem = "T shirt",
                             PriceItem = 89m,
@@ -376,7 +376,7 @@ namespace ShoppingCenter.Migrations
                         new
                         {
                             ItemId = 6,
-                            DescriptionItem = "Brick for children from 12 years of age.",
+                            DescriptionItem = "Brick for children from 12 years of age",
                             NameItem = "LEGO",
                             PriceItem = 3159m,
                             SizeItem = "7541 bricks",
@@ -385,10 +385,10 @@ namespace ShoppingCenter.Migrations
                         new
                         {
                             ItemId = 7,
-                            DescriptionItem = "Brick for children from 12 years of age.",
+                            DescriptionItem = "Brick for children from 12 years of ag.",
                             NameItem = "LEGO",
                             PriceItem = 389m,
-                            SizeItem = "834",
+                            SizeItem = "834 bricks",
                             Url = "https://m.media-amazon.com/images/I/611NGqFr1JL._AC_SX522_.jpg"
                         },
                         new

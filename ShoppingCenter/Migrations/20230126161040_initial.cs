@@ -73,7 +73,6 @@ namespace ShoppingCenter.Migrations
                     NameItem = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ColorItem = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SizeItem = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AvailabilityItem = table.Column<int>(type: "int", nullable: false),
                     PriceItem = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DescriptionItem = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -360,14 +359,27 @@ namespace ShoppingCenter.Migrations
 
             migrationBuilder.InsertData(
                 table: "Items",
-                columns: new[] { "ItemId", "AvailabilityItem", "ColorItem", "DescriptionItem", "NameItem", "PriceItem", "SizeItem", "Url" },
+                columns: new[] { "ItemId", "ColorItem", "DescriptionItem", "NameItem", "PriceItem", "SizeItem", "Url" },
                 values: new object[,]
                 {
-                    { 1, 5, "White", null, "T shirt", 59m, "S", "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
-                    { 2, 5, "White", null, "T shirt", 59m, "S", "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
-                    { 3, 5, "White", null, "T shirt", 59m, "S", "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
-                    { 4, 5, "White", null, "T shirt", 59m, "S", "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" },
-                    { 5, 5, "White", null, "T shirt", 59m, "S", "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" }
+                    { 1, "White", "Unisex t-shirt", "T shirt", 49m, "S", "https://sklep.lahtipro.pl/1355-thickbox_default/koszulka-t-shirt-bawelniana-biala-lahti-pro-l40204.jpg" },
+                    { 2, "Black", "Unisex t-shirt", "T shirt", 49m, "M", "https://sklep.lahtipro.pl/1281-large_default/koszulka-t-shirt-bawelniana-czarna-lahtipro-l40205.jpg" },
+                    { 3, "Blue with print", "T-shirt for men", "T shirt", 89m, "L", "https://duzylolek.pl/userdata/public/gfx/6120/koszulka-t-shirt-duze-rozmiary-3XL-4XL-5XL-Adamo-modna-wygodna-dla-mezczyzn-plus-size-napisy-6XL-7XL-8XL-9XL-10XL-12XL.jpg" },
+                    { 4, "Black", "Trousers for men", "Trousers", 89m, "42", "https://image-resizing.booztcdn.com/selected-homme/sel16051390_cblack_v179099.webp?has_grey=1&has_webp=0&size=w1300" },
+                    { 5, "Green", "Jacket for men", "Jacket", 399m, "L", "https://dankyshop.pl/wp-content/uploads/2022/12/2-1.png" },
+                    { 6, null, "Brick for children from 12 years of age", "LEGO", 3159m, "7541 bricks", "https://prod-api.mediaexpert.pl/api/images/gallery_500_500/thumbnails/images/27/2746003/LEGO-Star-Wars-Sokol-Millennium-75192-pudelko-zestaw.jpg" },
+                    { 7, null, "Brick for children from 12 years of ag.", "LEGO", 389m, "834 bricks", "https://m.media-amazon.com/images/I/611NGqFr1JL._AC_SX522_.jpg" },
+                    { 8, null, "A great gift for a child", "TEDDY BEAR", 39m, "60cm", "https://target.scene7.com/is/image/Target/GUEST_27556c59-356f-44c0-9142-0bf4465e116c?wid=488&hei=488&fmt=pjpeg" },
+                    { 9, null, "A great gift for a child", "TEDDY BEAR", 99m, "120cm", "https://cdn.shopify.com/s/files/1/0073/4740/4882/products/IMG_0476_0e28708a-6fc1-4c8a-afb1-43ce0924b52d_2592x.jpg?v=1630514970" },
+                    { 10, null, "A great gift for a girl", "DOLL", 189m, "40cm", "https://image.ceneostatic.pl/data/article_picture/31/d6/7d6d-6663-4ca2-96de-f3ca303412c6_large.png" },
+                    { 11, null, "A great gift for a future footballer", "PLUSH BALL", 56m, "M", "https://a.allegroimg.com/s1024/0cbed4/dfcc714144feb7d863cacfa4b2c9" },
+                    { 12, null, "Healthy, not sprayed", "Banana", 2m, null, "https://media.istockphoto.com/id/619046500/pl/zdj%C4%99cie/banany.jpg?s=612x612&w=0&k=20&c=44UgqVhiRpE94HbvM2-3i3VrZnRS_cLYdYOroV8LTIo=" },
+                    { 13, null, "From a Polish orchard", "Apple", 1m, null, "https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg" },
+                    { 14, null, "From a Polish orchard", "Apple juice", 5m, null, "https://wspolceznatura.pl/userdata/public/gfx/2125/Sok-Jablkowy-Tloczony-Premium-4x5l.jpg" },
+                    { 15, null, "From Poland", "Potato", 21m, null, "https://www.poradnia.pl/images/stories/artykuly/ziemniak.jpg" },
+                    { 16, null, "From Poland", "Tomato", 23m, null, "https://profit.sklepkupiec.pl/17852-thickbox_default/pomidor-import.jpg" },
+                    { 17, null, "From Poland", "Pumpkin", 16m, null, "https://www.carrefour.pl/images/product/org/dynia-wazona-nlctjl.jpg" },
+                    { 18, "Brown", "Coat for men", "Coat", 689m, "M", "https://img01.ztat.net/article/spp-media-p1/6e81c667c70f3155b0851ea7f7ce6d1b/c82119333c6242c18428763270c25a17.jpg?imwidth=1800&filter=packshot" }
                 });
 
             migrationBuilder.InsertData(
@@ -375,8 +387,9 @@ namespace ShoppingCenter.Migrations
                 columns: new[] { "ShopId", "Description", "Level", "ShopName" },
                 values: new object[,]
                 {
-                    { 1, "Clothes shop, t-shirts, trouser and hoodies!", "0", "ClothesShop" },
-                    { 2, "Clothes shop, t-shirts, trouser and hoodies!", "0", "ClothesShop" }
+                    { 1, "Clothes shop, t-shirts, trouser and hoodies!", "0", "Clothes Shop" },
+                    { 2, "Toys shop, teddy bears, LEGO and many more toys for you!", "1", "Toys Shop" },
+                    { 3, "Food shop, vegetables, fruits, fresh juice.", "1", "Food Shop" }
                 });
 
             migrationBuilder.InsertData(
@@ -385,8 +398,23 @@ namespace ShoppingCenter.Migrations
                 values: new object[,]
                 {
                     { 1, 1, 1 },
-                    { 2, 1, 1 },
-                    { 3, 1, 1 }
+                    { 2, 2, 1 },
+                    { 3, 3, 1 },
+                    { 4, 4, 1 },
+                    { 5, 5, 1 },
+                    { 6, 6, 2 },
+                    { 7, 7, 2 },
+                    { 8, 8, 2 },
+                    { 9, 9, 2 },
+                    { 10, 10, 2 },
+                    { 11, 11, 2 },
+                    { 12, 12, 3 },
+                    { 13, 13, 3 },
+                    { 14, 14, 3 },
+                    { 15, 15, 3 },
+                    { 16, 16, 3 },
+                    { 17, 17, 3 },
+                    { 18, 18, 1 }
                 });
 
             migrationBuilder.CreateIndex(

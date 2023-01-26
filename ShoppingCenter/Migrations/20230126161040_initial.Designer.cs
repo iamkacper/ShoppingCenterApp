@@ -12,7 +12,7 @@ using ShoppingCenter.Areas.Identity.Data;
 namespace ShoppingCenter.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230125152027_initial")]
+    [Migration("20230126161040_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -290,10 +290,7 @@ namespace ShoppingCenter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemId"));
 
-                    b.Property<int>("AvailabilityItem")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ColourItem")
+                    b.Property<string>("ColorItem")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DescriptionItem")
@@ -319,52 +316,164 @@ namespace ShoppingCenter.Migrations
                         new
                         {
                             ItemId = 1,
-                            AvailabilityItem = 5,
                             ColorItem = "White",
+                            DescriptionItem = "Unisex t-shirt",
                             NameItem = "T shirt",
-                            PriceItem = 59m,
+                            PriceItem = 49m,
                             SizeItem = "S",
-                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            Url = "https://sklep.lahtipro.pl/1355-thickbox_default/koszulka-t-shirt-bawelniana-biala-lahti-pro-l40204.jpg"
                         },
                         new
                         {
                             ItemId = 2,
-                            AvailabilityItem = 5,
-                            ColorItem = "White",
+                            ColorItem = "Black",
+                            DescriptionItem = "Unisex t-shirt",
                             NameItem = "T shirt",
-                            PriceItem = 59m,
-                            SizeItem = "S",
-                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            PriceItem = 49m,
+                            SizeItem = "M",
+                            Url = "https://sklep.lahtipro.pl/1281-large_default/koszulka-t-shirt-bawelniana-czarna-lahtipro-l40205.jpg"
                         },
                         new
                         {
                             ItemId = 3,
-                            AvailabilityItem = 5,
-                            ColorItem = "White",
+                            ColorItem = "Blue with print",
+                            DescriptionItem = "T-shirt for men",
                             NameItem = "T shirt",
-                            PriceItem = 59m,
-                            SizeItem = "S",
-                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            PriceItem = 89m,
+                            SizeItem = "L",
+                            Url = "https://duzylolek.pl/userdata/public/gfx/6120/koszulka-t-shirt-duze-rozmiary-3XL-4XL-5XL-Adamo-modna-wygodna-dla-mezczyzn-plus-size-napisy-6XL-7XL-8XL-9XL-10XL-12XL.jpg"
                         },
                         new
                         {
                             ItemId = 4,
-                            AvailabilityItem = 5,
-                            ColorItem = "White",
-                            NameItem = "T shirt",
-                            PriceItem = 59m,
-                            SizeItem = "S",
-                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            ColorItem = "Black",
+                            DescriptionItem = "Trousers for men",
+                            NameItem = "Trousers",
+                            PriceItem = 89m,
+                            SizeItem = "42",
+                            Url = "https://image-resizing.booztcdn.com/selected-homme/sel16051390_cblack_v179099.webp?has_grey=1&has_webp=0&size=w1300"
                         },
                         new
                         {
                             ItemId = 5,
-                            AvailabilityItem = 5,
-                            ColorItem = "White",
-                            NameItem = "T shirt",
-                            PriceItem = 59m,
-                            SizeItem = "S",
-                            Url = "https://images.pexels.com/photos/639024/pexels-photo-639024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            ColorItem = "Green",
+                            DescriptionItem = "Jacket for men",
+                            NameItem = "Jacket",
+                            PriceItem = 399m,
+                            SizeItem = "L",
+                            Url = "https://dankyshop.pl/wp-content/uploads/2022/12/2-1.png"
+                        },
+                        new
+                        {
+                            ItemId = 18,
+                            ColorItem = "Brown",
+                            DescriptionItem = "Coat for men",
+                            NameItem = "Coat",
+                            PriceItem = 689m,
+                            SizeItem = "M",
+                            Url = "https://img01.ztat.net/article/spp-media-p1/6e81c667c70f3155b0851ea7f7ce6d1b/c82119333c6242c18428763270c25a17.jpg?imwidth=1800&filter=packshot"
+                        },
+                        new
+                        {
+                            ItemId = 6,
+                            DescriptionItem = "Brick for children from 12 years of age",
+                            NameItem = "LEGO",
+                            PriceItem = 3159m,
+                            SizeItem = "7541 bricks",
+                            Url = "https://prod-api.mediaexpert.pl/api/images/gallery_500_500/thumbnails/images/27/2746003/LEGO-Star-Wars-Sokol-Millennium-75192-pudelko-zestaw.jpg"
+                        },
+                        new
+                        {
+                            ItemId = 7,
+                            DescriptionItem = "Brick for children from 12 years of ag.",
+                            NameItem = "LEGO",
+                            PriceItem = 389m,
+                            SizeItem = "834 bricks",
+                            Url = "https://m.media-amazon.com/images/I/611NGqFr1JL._AC_SX522_.jpg"
+                        },
+                        new
+                        {
+                            ItemId = 8,
+                            DescriptionItem = "A great gift for a child",
+                            NameItem = "TEDDY BEAR",
+                            PriceItem = 39m,
+                            SizeItem = "60cm",
+                            Url = "https://target.scene7.com/is/image/Target/GUEST_27556c59-356f-44c0-9142-0bf4465e116c?wid=488&hei=488&fmt=pjpeg"
+                        },
+                        new
+                        {
+                            ItemId = 9,
+                            DescriptionItem = "A great gift for a child",
+                            NameItem = "TEDDY BEAR",
+                            PriceItem = 99m,
+                            SizeItem = "120cm",
+                            Url = "https://cdn.shopify.com/s/files/1/0073/4740/4882/products/IMG_0476_0e28708a-6fc1-4c8a-afb1-43ce0924b52d_2592x.jpg?v=1630514970"
+                        },
+                        new
+                        {
+                            ItemId = 10,
+                            DescriptionItem = "A great gift for a girl",
+                            NameItem = "DOLL",
+                            PriceItem = 189m,
+                            SizeItem = "40cm",
+                            Url = "https://image.ceneostatic.pl/data/article_picture/31/d6/7d6d-6663-4ca2-96de-f3ca303412c6_large.png"
+                        },
+                        new
+                        {
+                            ItemId = 11,
+                            DescriptionItem = "A great gift for a future footballer",
+                            NameItem = "PLUSH BALL",
+                            PriceItem = 56m,
+                            SizeItem = "M",
+                            Url = "https://a.allegroimg.com/s1024/0cbed4/dfcc714144feb7d863cacfa4b2c9"
+                        },
+                        new
+                        {
+                            ItemId = 12,
+                            DescriptionItem = "Healthy, not sprayed",
+                            NameItem = "Banana",
+                            PriceItem = 2m,
+                            Url = "https://media.istockphoto.com/id/619046500/pl/zdj%C4%99cie/banany.jpg?s=612x612&w=0&k=20&c=44UgqVhiRpE94HbvM2-3i3VrZnRS_cLYdYOroV8LTIo="
+                        },
+                        new
+                        {
+                            ItemId = 13,
+                            DescriptionItem = "From a Polish orchard",
+                            NameItem = "Apple",
+                            PriceItem = 1m,
+                            Url = "https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg"
+                        },
+                        new
+                        {
+                            ItemId = 14,
+                            DescriptionItem = "From a Polish orchard",
+                            NameItem = "Apple juice",
+                            PriceItem = 5m,
+                            Url = "https://wspolceznatura.pl/userdata/public/gfx/2125/Sok-Jablkowy-Tloczony-Premium-4x5l.jpg"
+                        },
+                        new
+                        {
+                            ItemId = 15,
+                            DescriptionItem = "From Poland",
+                            NameItem = "Potato",
+                            PriceItem = 21m,
+                            Url = "https://www.poradnia.pl/images/stories/artykuly/ziemniak.jpg"
+                        },
+                        new
+                        {
+                            ItemId = 16,
+                            DescriptionItem = "From Poland",
+                            NameItem = "Tomato",
+                            PriceItem = 23m,
+                            Url = "https://profit.sklepkupiec.pl/17852-thickbox_default/pomidor-import.jpg"
+                        },
+                        new
+                        {
+                            ItemId = 17,
+                            DescriptionItem = "From Poland",
+                            NameItem = "Pumpkin",
+                            PriceItem = 16m,
+                            Url = "https://www.carrefour.pl/images/product/org/dynia-wazona-nlctjl.jpg"
                         });
                 });
 
@@ -436,14 +545,21 @@ namespace ShoppingCenter.Migrations
                             ShopId = 1,
                             Description = "Clothes shop, t-shirts, trouser and hoodies!",
                             Level = "0",
-                            ShopName = "ClothesShop"
+                            ShopName = "Clothes Shop"
                         },
                         new
                         {
                             ShopId = 2,
-                            Description = "Clothes shop, t-shirts, trouser and hoodies!",
-                            Level = "0",
-                            ShopName = "ClothesShop"
+                            Description = "Toys shop, teddy bears, LEGO and many more toys for you!",
+                            Level = "1",
+                            ShopName = "Toys Shop"
+                        },
+                        new
+                        {
+                            ShopId = 3,
+                            Description = "Food shop, vegetables, fruits, fresh juice.",
+                            Level = "1",
+                            ShopName = "Food Shop"
                         });
                 });
 
@@ -498,14 +614,104 @@ namespace ShoppingCenter.Migrations
                         new
                         {
                             Id = 2,
-                            ItemId = 1,
+                            ItemId = 2,
                             ShopId = 1
                         },
                         new
                         {
                             Id = 3,
-                            ItemId = 1,
+                            ItemId = 3,
                             ShopId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ItemId = 4,
+                            ShopId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ItemId = 5,
+                            ShopId = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ItemId = 18,
+                            ShopId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ItemId = 6,
+                            ShopId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ItemId = 7,
+                            ShopId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ItemId = 8,
+                            ShopId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ItemId = 9,
+                            ShopId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ItemId = 10,
+                            ShopId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ItemId = 11,
+                            ShopId = 2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ItemId = 12,
+                            ShopId = 3
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ItemId = 13,
+                            ShopId = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ItemId = 14,
+                            ShopId = 3
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ItemId = 15,
+                            ShopId = 3
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ItemId = 16,
+                            ShopId = 3
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ItemId = 17,
+                            ShopId = 3
                         });
                 });
 

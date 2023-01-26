@@ -46,5 +46,9 @@ namespace ShoppingCenter.Controllers
             _service.Delete(id);
             return RedirectToAction("Index", "Shop");
         }
+        public IActionResult Buy()
+        {
+            return View();
+        }
     }
 }

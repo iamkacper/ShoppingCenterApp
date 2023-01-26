@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ShoppingCenter.Models;
 using ShoppingCenter.Models.ViewModels;
 using ShoppingCenter.Services.ShopServices;
+using System.Data;
 
 namespace ShoppingCenter.Controllers
 {
+    [Authorize]
     public class ShopController : Controller
     {
         private readonly IShopService _service;
@@ -19,11 +22,13 @@ namespace ShoppingCenter.Controllers
             var shops = _service.GetAll();
             return View(shops);
         }
+
         public IActionResult Edit(string id)
         {
             var shop = _service.GetById(id);
             return View(shop);
         }
+
 
         [HttpPost]
         public IActionResult EditShop(string id, [Bind("ShopId,ShopName,Description,Level")] Shop shop)
@@ -31,6 +36,7 @@ namespace ShoppingCenter.Controllers
             _service.Edit(shop, id);
             return RedirectToAction("Index");
         }
+
 
         public IActionResult Create()
         {
