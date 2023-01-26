@@ -42,11 +42,6 @@ public class IdentityContext : IdentityDbContext<ShoppingCenterUser,IdentityRole
         //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "User", NormalizedName = "USER" }
         //    );
 
-        //builder.Entity<ShopCategory>().HasData(
-        //    new ShopCategory { ShopCategoryId = Guid.NewGuid(), ShopCategoryName = "ClothesShop" },
-        //    new ShopCategory { ShopCategoryId = Guid.NewGuid(), ShopCategoryName = "ToysShop" },
-        //    new ShopCategory { ShopCategoryId = Guid.NewGuid(), ShopCategoryName = "FoodShop" }
-        //    );
 
         builder.Entity<Shop>().HasData(
            new Shop { ShopId = 1, ShopName = "Clothes Shop", Description = "Clothes shop, t-shirts, trouser and hoodies!", Level = "0" },

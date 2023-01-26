@@ -4,7 +4,54 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Information about stores in the shopping center</h1>
+
+    <h1>Information about stores in the shopping center.</h1>
+
+    <p>
+        <a class="btn btn-primary d-inline-block m-1" asp-action="Create">Create new store</a>
+    </p>
+
+    <div class="row row-cols-3 card-deck">
+        @foreach (var item in Model)
+        {
+            <div class="container">
+                <h2></h2>
+                <div class="card" style="width:400px">
+
+                    <div class="card-body">
+
+                        <p>
+                            <h4>@item.ShopName</h4>
+                        </p>
+
+                        <p>
+                        <h6>Information what u can buy in this store: <br>@Html.DisplayFor(modelItem => item.Description) </h6>
+                        </p>
+
+                        <p>
+                            <h6>Level: @Html.DisplayFor(modelItem => item.Level)</h6>
+                        </p>
+
+                        <a asp-action="Items" asp-route-id="@item.ShopId" class="btn btn-success d-inline-block m-1">Redirect to the store</a>
+
+                        <a asp-action="Edit" asp-route-id="@item.ShopId" class="btn btn-secondary d-inline-block m-1">Edit</a>
+
+                        <a asp-action="Delete" asp-route-id="@item.ShopId" class="btn btn-danger d-inline-block m-1">Delete</a>
+                    </div>
+                </div>
+                <br>
+            </div>
+        }
+    </div>
+
+@*
+                    @model IEnumerable<ShoppingCenter.Models.Shop>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Information about stores in the shopping center.</h1>
 
 <p>
     <a class="btn btn-primary" asp-action="Create">Create new store</a>
@@ -45,4 +92,4 @@
             </tr>
         }
     </tbody>
-</table>
+</table>*@
