@@ -17,17 +17,15 @@
             <div class="container">
                 <h2></h2>
                 <div class="card" style="width:400px">
-
+                        <img class="card-img-top" src="@item.Url" alt="Card image" style="width:100%">
                     <div class="card-body">
 
                         <p>
                             <h4>@item.ShopName</h4>
                         </p>
-
                         <p>
                         <h6>Information what u can buy in this store: <br>@Html.DisplayFor(modelItem => item.Description) </h6>
                         </p>
-
                         <p>
                             <h6>Level: @Html.DisplayFor(modelItem => item.Level)</h6>
                         </p>

@@ -17,6 +17,11 @@ namespace ShoppingCenter.Models
         [MinLength(10, ErrorMessage = "Describe the shop to the customer. Use more words.")]
         public string? Description { get; set; }
 
+        [Required]
+        [Url]
+        public string? Url { get; set; }
+
+
         [Required(ErrorMessage = "Field is required")]
         [Range(0, 3, ErrorMessage = "The value should be in the range 0 to 3. Because Shopping Center has only 3 levels.")]
         public string? Level { get; set; }
