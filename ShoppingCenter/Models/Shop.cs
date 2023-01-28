@@ -7,10 +7,18 @@ namespace ShoppingCenter.Models
     {
         [Key]
         public int ShopId { get; set; }
-        public ISet<ShopCategory>? Categories { get; set; }
         //public string? UrlPicture { get; set; }
+        [Required(ErrorMessage = "Field is required")]
+        [MinLength(6, ErrorMessage = "Store name should contain more than 6 words.")]
+        
         public string? ShopName { get; set; }
+
+        [Required(ErrorMessage ="Field is required")]
+        [MinLength(10, ErrorMessage = "Describe the shop to the customer. Use more words.")]
         public string? Description { get; set; }
+
+        [Required(ErrorMessage = "Field is required")]
+        [Range(0, 3, ErrorMessage = "The value should be in the range 0 to 3. Because Shopping Center has only 3 levels.")]
         public string? Level { get; set; }
         public List<Shop_Items>? Shop_Items { get; set; }
     }

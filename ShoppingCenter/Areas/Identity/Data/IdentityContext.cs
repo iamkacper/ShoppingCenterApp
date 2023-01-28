@@ -8,13 +8,8 @@ namespace ShoppingCenter.Areas.Identity.Data;
 
 public class IdentityContext : IdentityDbContext<ShoppingCenterUser,IdentityRole,string>
 {
-    public DbSet<ItemCategory> Categories { get; set; }
     public DbSet<Item> Items { get; set; }
-    public DbSet<Transaction> Transactions { get; set; }
-    public DbSet<ItemTransaction> Transaction_Items { get; set; }
-    public DbSet<CustomerShoppingCart> CustomersShoppingCarts { get; set; }
     public DbSet<ShoppingCenterUser> Customers { get; set; }
-    public DbSet<CustomerShoppingCartItem> CustomerShoppingCartItems { get; set; }
     public DbSet<Shop_Items> Shop_Items { get; set; }
     public IdentityContext(DbContextOptions<IdentityContext> options)
         : base(options)
@@ -94,15 +89,6 @@ public class IdentityContext : IdentityDbContext<ShoppingCenterUser,IdentityRole
         builder.Entity<Item>().Property(e => e.PriceItem);
         //builder.Entity<Item>().Property(e => e.ItemImageName);
         builder.Entity<Item>().Property(e => e.DescriptionItem);
-
-        builder.Entity<Transaction>().HasKey(e => e.TransactionId);
-
-        builder.Entity<ItemTransaction>().HasKey(e => e.ItemTransactionId);
-        builder.Entity<ItemTransaction>().Property(e => e.PriceItem);
-
-        builder.Entity<CustomerShoppingCartItem>().HasKey(e => e.CustomerShoppingCartItemId);
-
-        builder.Entity<CustomerShoppingCart>().HasKey(e => e.CustomerId);
 
         builder.Entity<ShoppingCenterUser>().HasKey(e => e.Id);
 

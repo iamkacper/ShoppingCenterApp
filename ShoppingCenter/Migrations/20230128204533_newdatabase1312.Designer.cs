@@ -12,8 +12,8 @@ using ShoppingCenter.Areas.Identity.Data;
 namespace ShoppingCenter.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230126220422_newdatabase")]
-    partial class newdatabase
+    [Migration("20230128204533_newdatabase1312")]
+    partial class newdatabase1312
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,21 +24,6 @@ namespace ShoppingCenter.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ItemItemCategory", b =>
-                {
-                    b.Property<Guid>("CategoriesItemCategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("itemsItemId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoriesItemCategoryId", "itemsItemId");
-
-                    b.HasIndex("itemsItemId");
-
-                    b.ToTable("ItemItemCategory");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -242,46 +227,6 @@ namespace ShoppingCenter.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ShoppingCenter.Models.CustomerShoppingCart", b =>
-                {
-                    b.Property<Guid>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CustomerId1")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CustomerId");
-
-                    b.HasIndex("CustomerId1");
-
-                    b.ToTable("CustomersShoppingCarts");
-                });
-
-            modelBuilder.Entity("ShoppingCenter.Models.CustomerShoppingCartItem", b =>
-                {
-                    b.Property<Guid>("CustomerShoppingCartItemId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CustomerShoppingCartId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("ItemId1")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomerShoppingCartItemId");
-
-                    b.HasIndex("CustomerShoppingCartId");
-
-                    b.HasIndex("ItemId1");
-
-                    b.ToTable("CustomerShoppingCartItems");
-                });
-
             modelBuilder.Entity("ShoppingCenter.Models.Item", b =>
                 {
                     b.Property<int>("ItemId")
@@ -294,9 +239,11 @@ namespace ShoppingCenter.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DescriptionItem")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameItem")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PriceItem")
@@ -306,6 +253,7 @@ namespace ShoppingCenter.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Url")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ItemId");
@@ -477,47 +425,6 @@ namespace ShoppingCenter.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ShoppingCenter.Models.ItemCategory", b =>
-                {
-                    b.Property<Guid>("ItemCategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ItemCategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ItemCategoryId");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("ShoppingCenter.Models.ItemTransaction", b =>
-                {
-                    b.Property<Guid>("ItemTransactionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ItemId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("ItemId1")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("PriceItem")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("TransactionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ItemTransactionId");
-
-                    b.HasIndex("ItemId1");
-
-                    b.HasIndex("TransactionId");
-
-                    b.ToTable("Transaction_Items");
-                });
-
             modelBuilder.Entity("ShoppingCenter.Models.Shop", b =>
                 {
                     b.Property<int>("ShopId")
@@ -530,6 +437,7 @@ namespace ShoppingCenter.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Level")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShopName")
@@ -561,25 +469,6 @@ namespace ShoppingCenter.Migrations
                             Level = "1",
                             ShopName = "Food Shop"
                         });
-                });
-
-            modelBuilder.Entity("ShoppingCenter.Models.ShopCategory", b =>
-                {
-                    b.Property<Guid>("ShopCategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ShopCategoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ShopId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ShopCategoryId");
-
-                    b.HasIndex("ShopId");
-
-                    b.ToTable("ShopCategory");
                 });
 
             modelBuilder.Entity("ShoppingCenter.Models.Shop_Items", b =>
@@ -715,40 +604,6 @@ namespace ShoppingCenter.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ShoppingCenter.Models.Transaction", b =>
-                {
-                    b.Property<Guid>("TransactionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CustomerId1")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("TransactionId");
-
-                    b.HasIndex("CustomerId1");
-
-                    b.ToTable("Transactions");
-                });
-
-            modelBuilder.Entity("ItemItemCategory", b =>
-                {
-                    b.HasOne("ShoppingCenter.Models.ItemCategory", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriesItemCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ShoppingCenter.Models.Item", null)
-                        .WithMany()
-                        .HasForeignKey("itemsItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -800,56 +655,6 @@ namespace ShoppingCenter.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ShoppingCenter.Models.CustomerShoppingCart", b =>
-                {
-                    b.HasOne("ShoppingCenter.Areas.Identity.Data.ShoppingCenterUser", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId1");
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("ShoppingCenter.Models.CustomerShoppingCartItem", b =>
-                {
-                    b.HasOne("ShoppingCenter.Models.CustomerShoppingCart", "CustomerShoppingCart")
-                        .WithMany("CustomerShoppingCartItems")
-                        .HasForeignKey("CustomerShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ShoppingCenter.Models.Item", "Item")
-                        .WithMany("CustomerShoppingCartItem")
-                        .HasForeignKey("ItemId1");
-
-                    b.Navigation("CustomerShoppingCart");
-
-                    b.Navigation("Item");
-                });
-
-            modelBuilder.Entity("ShoppingCenter.Models.ItemTransaction", b =>
-                {
-                    b.HasOne("ShoppingCenter.Models.Item", "Item")
-                        .WithMany("ItemTransactions")
-                        .HasForeignKey("ItemId1");
-
-                    b.HasOne("ShoppingCenter.Models.Transaction", "Transaction")
-                        .WithMany("ItemsTransaction")
-                        .HasForeignKey("TransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Item");
-
-                    b.Navigation("Transaction");
-                });
-
-            modelBuilder.Entity("ShoppingCenter.Models.ShopCategory", b =>
-                {
-                    b.HasOne("ShoppingCenter.Models.Shop", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("ShopId");
-                });
-
             modelBuilder.Entity("ShoppingCenter.Models.Shop_Items", b =>
                 {
                     b.HasOne("ShoppingCenter.Models.Item", "Item")
@@ -869,39 +674,14 @@ namespace ShoppingCenter.Migrations
                     b.Navigation("Shop");
                 });
 
-            modelBuilder.Entity("ShoppingCenter.Models.Transaction", b =>
-                {
-                    b.HasOne("ShoppingCenter.Areas.Identity.Data.ShoppingCenterUser", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId1");
-
-                    b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("ShoppingCenter.Models.CustomerShoppingCart", b =>
-                {
-                    b.Navigation("CustomerShoppingCartItems");
-                });
-
             modelBuilder.Entity("ShoppingCenter.Models.Item", b =>
                 {
-                    b.Navigation("CustomerShoppingCartItem");
-
-                    b.Navigation("ItemTransactions");
-
                     b.Navigation("Shop_Items");
                 });
 
             modelBuilder.Entity("ShoppingCenter.Models.Shop", b =>
                 {
-                    b.Navigation("Categories");
-
                     b.Navigation("Shop_Items");
-                });
-
-            modelBuilder.Entity("ShoppingCenter.Models.Transaction", b =>
-                {
-                    b.Navigation("ItemsTransaction");
                 });
 #pragma warning restore 612, 618
         }

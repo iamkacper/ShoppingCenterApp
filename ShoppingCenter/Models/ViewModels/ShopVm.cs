@@ -1,4 +1,6 @@
-﻿namespace ShoppingCenter.Models.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ShoppingCenter.Models.ViewModels
 {
     public class ShopVm
     {
