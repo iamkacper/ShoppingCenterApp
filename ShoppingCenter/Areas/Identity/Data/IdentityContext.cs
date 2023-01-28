@@ -35,10 +35,7 @@ public class IdentityContext : IdentityDbContext<ShoppingCenterUser,IdentityRole
 
 
         //builder.Entity<IdentityRole>().HasData(
-        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "SuperAdmin", NormalizedName = "SUPERADMIN" },
-        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "ClothesShopAdmin", NormalizedName = "ClothesShopADMIN" },
-        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "ToysShopAdmin", NormalizedName = "ToysShopADMIN" },
-        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "FoodShopAdmin", NormalizedName = "FoodShopADMIN" },
+        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "Admin", NormalizedName = "ADMIN" },
         //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "User", NormalizedName = "USER" }
         //    );
 
