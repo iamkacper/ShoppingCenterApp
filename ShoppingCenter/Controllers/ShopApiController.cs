@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.AspNetCore.Http;
+using ShoppingCenter.Models;
+using ShoppingCenter.Models.ViewModels;
+using ShoppingCenter.Services.ItemServices;
+using ShoppingCenter.Services.ShopServices;
 
 namespace ShoppingCenter.Controllers
 {
@@ -8,36 +11,66 @@ namespace ShoppingCenter.Controllers
     [ApiController]
     public class ShopApiController : ControllerBase
     {
+        private readonly IShopService _service;
+
+        public ShopApiController(IShopService service)
+        {
+            _service = service;
+        }
+
         // GET: api/<ShopApiController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("{id}")]
+        public IActionResult GetById(string id)
         {
-            return new string[] { "value1", "value2" };
+            var shop = _service.GetById(id);
+            if (shop == null)
+            {
+                return BadRequest();
+            }
+            return Ok(shop);
         }
 
-        // GET api/<ShopApiController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<ShopApiController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("{id}")]
+        public IActionResult Create( [FromBody] ShopVm shop)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _service.Create(shop);
+            return Created($"/api/shop/{shop.ShopId}", shop);
         }
 
-        // PUT api/<ShopApiController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult Edit([FromRoute] string id, [FromBody] Shop shop)
         {
+            var found = _service.GetById(id);
+            if (found == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                _service.Edit(shop, id);
+                return Ok();
+            }
+            return BadRequest();
         }
 
-        // DELETE api/<ShopApiController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //[HttpDelete]
+        //[Route("{id}")]
+        //public IActionResult Delete(int id)
+        //{
+        //    var result = _service.GetById(id);
+        //    if (result != null)
+        //    {
+        //        _service.Delete(id);
+        //        return Ok();
+        //    }
+        //    return NotFound();
     }
 }
+

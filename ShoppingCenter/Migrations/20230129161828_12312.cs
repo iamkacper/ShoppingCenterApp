@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ShoppingCenter.Migrations
 {
     /// <inheritdoc />
-    public partial class newdatabase1312 : Migration
+    public partial class _12312 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,8 +76,10 @@ namespace ShoppingCenter.Migrations
                 {
                     ShopId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ShopName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ShopName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Level = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -244,12 +246,12 @@ namespace ShoppingCenter.Migrations
 
             migrationBuilder.InsertData(
                 table: "Shop",
-                columns: new[] { "ShopId", "Description", "Level", "ShopName" },
+                columns: new[] { "ShopId", "Description", "Email", "Level", "ShopName", "Url" },
                 values: new object[,]
                 {
-                    { 1, "Clothes shop, t-shirts, trouser and hoodies!", "0", "Clothes Shop" },
-                    { 2, "Toys shop, teddy bears, LEGO and many more toys for you!", "1", "Toys Shop" },
-                    { 3, "Food shop, vegetables, fruits, fresh juice.", "1", "Food Shop" }
+                    { 1, "Clothes shop, t-shirts, trouser and hoodies!", "ClothesShop@gmail.com", "0", "Clothes Shop", "https://img.freepik.com/darmowe-wektory/recznie-rysowane-logo-sklepu-odziezowego_23-2149499592.jpg?w=2000" },
+                    { 2, "Toys shop, teddy bears, LEGO and many more toys for you!", "ToysShop@gmail.com", "1", "Toys Shop", "https://st2.depositphotos.com/3687485/6431/v/950/depositphotos_64314213-stock-illustration-abstract-bear-toy-vector-logo.jpg" },
+                    { 3, "Food shop, vegetables, fruits, fresh juice.", "FoodShop@gmail.com", "1", "Food Shop", "https://st4.depositphotos.com/12678588/23473/v/600/depositphotos_234736640-stock-illustration-food-logo-with-smile-label.jpg" }
                 });
 
             migrationBuilder.InsertData(

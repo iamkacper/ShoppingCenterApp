@@ -442,10 +442,6 @@ namespace ShoppingCenter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ShopName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -465,7 +461,6 @@ namespace ShoppingCenter.Migrations
                             Description = "Clothes shop, t-shirts, trouser and hoodies!",
                             Email = "ClothesShop@gmail.com",
                             Level = "0",
-                            Phone = "15 345 23 44",
                             ShopName = "Clothes Shop",
                             Url = "https://img.freepik.com/darmowe-wektory/recznie-rysowane-logo-sklepu-odziezowego_23-2149499592.jpg?w=2000"
                         },
@@ -475,7 +470,6 @@ namespace ShoppingCenter.Migrations
                             Description = "Toys shop, teddy bears, LEGO and many more toys for you!",
                             Email = "ToysShop@gmail.com",
                             Level = "1",
-                            Phone = "13 12 14 55",
                             ShopName = "Toys Shop",
                             Url = "https://st2.depositphotos.com/3687485/6431/v/950/depositphotos_64314213-stock-illustration-abstract-bear-toy-vector-logo.jpg"
                         },
@@ -485,7 +479,6 @@ namespace ShoppingCenter.Migrations
                             Description = "Food shop, vegetables, fruits, fresh juice.",
                             Email = "FoodShop@gmail.com",
                             Level = "1",
-                            Phone = "14 112 33 13",
                             ShopName = "Food Shop",
                             Url = "https://st4.depositphotos.com/12678588/23473/v/600/depositphotos_234736640-stock-illustration-food-logo-with-smile-label.jpg"
                         });

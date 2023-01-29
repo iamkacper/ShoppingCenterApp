@@ -23,7 +23,6 @@ namespace ShoppingCenter.Services.ShopServices
                 ShopName = shop.ShopName,
                 Description = shop.Description,
                 Email= shop.Email,
-                Phone= shop.Phone, 
                 Level = shop.Level
             };
             _context.Shop.Add(result);

@@ -12,8 +12,8 @@ using ShoppingCenter.Areas.Identity.Data;
 namespace ShoppingCenter.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230128211555_12314124")]
-    partial class _12314124
+    [Migration("20230129161828_12312")]
+    partial class _12312
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -437,6 +437,10 @@ namespace ShoppingCenter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Level")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -458,6 +462,7 @@ namespace ShoppingCenter.Migrations
                         {
                             ShopId = 1,
                             Description = "Clothes shop, t-shirts, trouser and hoodies!",
+                            Email = "ClothesShop@gmail.com",
                             Level = "0",
                             ShopName = "Clothes Shop",
                             Url = "https://img.freepik.com/darmowe-wektory/recznie-rysowane-logo-sklepu-odziezowego_23-2149499592.jpg?w=2000"
@@ -466,6 +471,7 @@ namespace ShoppingCenter.Migrations
                         {
                             ShopId = 2,
                             Description = "Toys shop, teddy bears, LEGO and many more toys for you!",
+                            Email = "ToysShop@gmail.com",
                             Level = "1",
                             ShopName = "Toys Shop",
                             Url = "https://st2.depositphotos.com/3687485/6431/v/950/depositphotos_64314213-stock-illustration-abstract-bear-toy-vector-logo.jpg"
@@ -474,6 +480,7 @@ namespace ShoppingCenter.Migrations
                         {
                             ShopId = 3,
                             Description = "Food shop, vegetables, fruits, fresh juice.",
+                            Email = "FoodShop@gmail.com",
                             Level = "1",
                             ShopName = "Food Shop",
                             Url = "https://st4.depositphotos.com/12678588/23473/v/600/depositphotos_234736640-stock-illustration-food-logo-with-smile-label.jpg"
