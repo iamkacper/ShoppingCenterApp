@@ -18,7 +18,7 @@ namespace ShoppingCenter.Controllers
             _service = service;
         }
 
-        [HttpGet] /. działa
+        [HttpGet] // działa
         [Route("{id}")]
         public IActionResult GetById(string id)
         {
@@ -30,7 +30,7 @@ namespace ShoppingCenter.Controllers
             return Ok(shop);
         }
 
-        [HttpPost]
+        [HttpPost] //poprawoć
         [Route("{id}")]
         public IActionResult Create( [FromBody] ShopVm shop)
         {
@@ -43,6 +43,7 @@ namespace ShoppingCenter.Controllers
         }
 
         [HttpPut]
+        [HttpPost] //poprawoć
         [Route("{id}")]
         public IActionResult Edit([FromRoute] string id, [FromBody] Shop shop)
         {
@@ -59,17 +60,17 @@ namespace ShoppingCenter.Controllers
             return BadRequest();
         }
 
-        //[HttpDelete]
-        //[Route("{id}")]
-        //public IActionResult Delete(int id)
-        //{
-        //    var result = _service.GetById(id);
-        //    if (result != null)
-        //    {
-        //        _service.Delete(id);
-        //        return Ok();
-        //    }
-        //    return NotFound();
-    }
+        [HttpDelete] //poprawoć
+        [Route("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var result = _service.GetById(id);
+            if (result != null)
+            {
+                _service.Delete(id);
+                return Ok();
+            }
+            return NotFound();
+        }
 }
 
