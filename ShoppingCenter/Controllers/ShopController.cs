@@ -31,7 +31,7 @@ namespace ShoppingCenter.Controllers
 
 
         [HttpPost]
-        public IActionResult EditShop(string id, [Bind("ShopId,ShopName,Description,Level")] Shop shop)
+        public IActionResult EditShop(string id, [Bind("ShopId,Url,ShopName,Description,Email,Phone,Level")] Shop shop)
         {
             _service.Edit(shop, id);
             return RedirectToAction("Index");

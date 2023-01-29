@@ -36,9 +36,9 @@ public class IdentityContext : IdentityDbContext<ShoppingCenterUser,IdentityRole
 
 
         builder.Entity<Shop>().HasData(
-           new Shop { ShopId = 1, ShopName = "Clothes Shop", Url= "https://img.freepik.com/darmowe-wektory/recznie-rysowane-logo-sklepu-odziezowego_23-2149499592.jpg?w=2000", Description = "Clothes shop, t-shirts, trouser and hoodies!", Level = "0" },
-           new Shop { ShopId = 2, ShopName = "Toys Shop", Url = "https://st2.depositphotos.com/3687485/6431/v/950/depositphotos_64314213-stock-illustration-abstract-bear-toy-vector-logo.jpg", Description = "Toys shop, teddy bears, LEGO and many more toys for you!", Level = "1" },
-           new Shop { ShopId = 3, ShopName = "Food Shop", Url = "https://st4.depositphotos.com/12678588/23473/v/600/depositphotos_234736640-stock-illustration-food-logo-with-smile-label.jpg", Description = "Food shop, vegetables, fruits, fresh juice.", Level = "1" }
+           new Shop { ShopId = 1, ShopName = "Clothes Shop", Url= "https://img.freepik.com/darmowe-wektory/recznie-rysowane-logo-sklepu-odziezowego_23-2149499592.jpg?w=2000", Description = "Clothes shop, t-shirts, trouser and hoodies!", Level = "0", Email="ClothesShop@gmail.com", Phone= "15 345 23 44" },
+           new Shop { ShopId = 2, ShopName = "Toys Shop", Url = "https://st2.depositphotos.com/3687485/6431/v/950/depositphotos_64314213-stock-illustration-abstract-bear-toy-vector-logo.jpg", Description = "Toys shop, teddy bears, LEGO and many more toys for you!", Level = "1", Email = "ToysShop@gmail.com", Phone = "13 12 14 55" },
+           new Shop { ShopId = 3, ShopName = "Food Shop", Url = "https://st4.depositphotos.com/12678588/23473/v/600/depositphotos_234736640-stock-illustration-food-logo-with-smile-label.jpg", Description = "Food shop, vegetables, fruits, fresh juice.", Level = "1", Email = "FoodShop@gmail.com", Phone = "14 112 33 13" }
            ); ;
 
         builder.Entity<Item>().HasData(

@@ -21,6 +21,15 @@ namespace ShoppingCenter.Models
         [Url]
         public string? Url { get; set; }
 
+        [Required]
+        [EmailAddress(ErrorMessage = "Enter a valid email for customer contact.")]
+        public string? Email { get; set; }
+
+        [Required]
+        [MaxLength(9, ErrorMessage = "Please provide a valid telephone number. ")]
+        [Phone(ErrorMessage = "Provide a valid telephone number for customer contact.")]
+        public string? Phone { get; set; }
+
 
         [Required(ErrorMessage = "Field is required")]
         [Range(0, 3, ErrorMessage = "The value should be in the range 0 to 3. Because Shopping Center has only 3 levels.")]

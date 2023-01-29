@@ -19,8 +19,11 @@ namespace ShoppingCenter.Services.ShopServices
             Shop result = new Shop()
             {
                 ShopId = shop.ShopId,
+                Url =shop.Url,
                 ShopName = shop.ShopName,
                 Description = shop.Description,
+                Email= shop.Email,
+                Phone= shop.Phone, 
                 Level = shop.Level
             };
             _context.Shop.Add(result);
