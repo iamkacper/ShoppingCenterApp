@@ -18,8 +18,7 @@ namespace ShoppingCenter.Controllers
             _service = service;
         }
 
-        // GET: api/<ShopApiController>
-        [HttpGet]
+        [HttpGet] /. działa
         [Route("{id}")]
         public IActionResult GetById(string id)
         {
