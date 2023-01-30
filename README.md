@@ -38,6 +38,6 @@ The customer has the option of registering and logging in. He can browse stores 
 
 The application has an Api for the Item entity.
 
-# Unit tests
+# Unit tests 
 
 The tests were carried out for the most important functions of the ApiItemController.
