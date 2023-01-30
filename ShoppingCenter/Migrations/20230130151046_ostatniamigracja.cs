@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ShoppingCenter.Migrations
 {
     /// <inheritdoc />
-    public partial class _1 : Migration
+    public partial class ostatniamigracja : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -217,6 +217,15 @@ namespace ShoppingCenter.Migrations
                         principalTable: "Shop",
                         principalColumn: "ShopId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "269aa160-a485-44c7-a3b4-adfb737fe9df", null, "Admin", "ADMIN" },
+                    { "8cc27179-b50a-4fcc-8ad2-8a95b7a6ea02", null, "User", "USER" }
                 });
 
             migrationBuilder.InsertData(

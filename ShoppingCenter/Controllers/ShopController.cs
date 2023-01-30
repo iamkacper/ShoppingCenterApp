@@ -31,6 +31,7 @@ namespace ShoppingCenter.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult EditShop(string id, [Bind("ShopId,Url,ShopName,Description,Email,Level")] Shop shop)
         {
             _service.Edit(shop, id);
@@ -44,6 +45,7 @@ namespace ShoppingCenter.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateShop(ShopVm shop)
         {
             _service.Create(shop);

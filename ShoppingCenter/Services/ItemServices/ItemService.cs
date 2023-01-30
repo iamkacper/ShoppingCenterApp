@@ -13,36 +13,41 @@ namespace ShoppingCenter.Services.ItemServices
             _context = context;
         }
 
-        public void Create(ItemVm itemVm,int id)
+        public void Create(ItemVm itemVm, int id)
         {
             var item = new Item()
             {
-                ItemId = itemVm.ItemId,
                 NameItem = itemVm.NameItem,
                 ColorItem = itemVm.ColorItem,
                 SizeItem = itemVm.SizeItem,
                 PriceItem = itemVm.PriceItem,
                 Url = itemVm.Url,
-                DescriptionItem = itemVm.DescriptionItem,
-                Shop_Items= new List<Shop_Items>()
-                {
-                   new Shop_Items()
-                   {
-                    ShopId=id,
-                    ItemId = itemVm.ItemId
-                   }
-                }
+                DescriptionItem = itemVm.DescriptionItem
             };
             _context.Items.Add(item);
-            _context.SaveChanges(); 
+            _context.SaveChanges();
+
+            var temp = new Shop_Items()
+            {
+                ShopId = id,
+                ItemId = item.ItemId
+            };
+
+            _context.Shop_Items.Add(temp);
+            _context.SaveChanges();
 
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             var item = _context.Items.FirstOrDefault(x => x.ItemId == id);
+            if (item == null)
+            {
+                return false;
+            }
             _context.Items.Remove(item);
             _context.SaveChanges();
+            return true;
         }
 
         public Item GetById(int id)
@@ -55,19 +60,22 @@ namespace ShoppingCenter.Services.ItemServices
             return item;
         }
 
-        public void Update(ItemVm itemVm, int id)
+        public bool Update(ItemVm itemVm, int id)
         {
             var foundItem = _context.Items.FirstOrDefault(x => x.ItemId == id);
-            if (foundItem != null)
+            if(foundItem == null)
             {
-                foundItem.NameItem= itemVm.NameItem;
-                foundItem.ColorItem= itemVm.ColorItem;
-                foundItem.SizeItem= itemVm.SizeItem;
-                foundItem.PriceItem= itemVm.PriceItem;
-                foundItem.Url = itemVm.Url;
-                foundItem.DescriptionItem= itemVm.DescriptionItem;
+                return false; 
             }
+            foundItem.NameItem = itemVm.NameItem;
+            foundItem.ColorItem = itemVm.ColorItem;
+            foundItem.SizeItem = itemVm.SizeItem;
+            foundItem.PriceItem = itemVm.PriceItem;
+            foundItem.Url = itemVm.Url;
+            foundItem.DescriptionItem = itemVm.DescriptionItem;
+
             _context.SaveChanges();
+            return true;
 
         }
     }

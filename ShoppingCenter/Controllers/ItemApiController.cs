@@ -53,21 +53,21 @@ namespace ShoppingCenter.Controllers
             return Created($"/api/item/{itemVm.ItemId}", itemVm);
         }
 
-        [HttpPut] 
+        [HttpPut]
         [Route("{id}")]
         public IActionResult Update([FromRoute] int id, [FromBody] ItemVm itemVm)
         {
-            var found = _service.GetById(id);
-            if (found == null)
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var isUpdated = _service.Update(itemVm, id);
+
+            if (!isUpdated)
             {
                 return NotFound();
             }
-            if (ModelState.IsValid)
-            {
-                _service.Update(itemVm, id);
-                return Ok();
-            }
-            return BadRequest();
+            return Ok();
         }
 
     }

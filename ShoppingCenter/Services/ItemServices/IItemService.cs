@@ -5,9 +5,9 @@ namespace ShoppingCenter.Services.ItemServices
 {
     public interface IItemService
     {
-        void Create(ItemVm itemVm,int id);
-        void Update(ItemVm itemVm, int id);
-        void Delete(int id);
+        void Create(ItemVm itemVm, int id);
+        bool Update(ItemVm itemVm, int id);
+        bool Delete(int id);
         Item GetById(int id);
         //Task Create(ItemVm itemVm);
     }

@@ -12,8 +12,8 @@ using ShoppingCenter.Areas.Identity.Data;
 namespace ShoppingCenter.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230130120901_koniec")]
-    partial class koniec
+    [Migration("20230130151046_ostatniamigracja")]
+    partial class ostatniamigracja
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,13 +54,13 @@ namespace ShoppingCenter.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "126c195b-2c4a-466e-85fa-e33799c25af5",
+                            Id = "269aa160-a485-44c7-a3b4-adfb737fe9df",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "d4624c18-7d03-4ff9-b4df-00f45feafca1",
+                            Id = "8cc27179-b50a-4fcc-8ad2-8a95b7a6ea02",
                             Name = "User",
                             NormalizedName = "USER"
                         });
