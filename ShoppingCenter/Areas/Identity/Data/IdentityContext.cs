@@ -29,10 +29,10 @@ public class IdentityContext : IdentityDbContext<ShoppingCenterUser,IdentityRole
 
 
 
-        //builder.Entity<IdentityRole>().HasData(
-        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "Admin", NormalizedName = "ADMIN" },
-        //    new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "User", NormalizedName = "USER" }
-        //    );
+       builder.Entity<IdentityRole>().HasData(
+            new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "Admin", NormalizedName = "ADMIN" },
+            new IdentityRole() { Id = Guid.NewGuid().ToString(), Name = "User", NormalizedName = "USER" }
+            );
 
 
         builder.Entity<Shop>().HasData(

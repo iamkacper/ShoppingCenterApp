@@ -19,7 +19,8 @@ builder.Services.AddDefaultIdentity<ShoppingCenterUser>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
     options.Password.RequireLowercase = false;
-}).AddEntityFrameworkStores<IdentityContext>();
+})  .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<IdentityContext>();
 
 //builder.Services.AddDefaultIdentity<ShoppingCenterUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<IdentityContext>();
 
@@ -28,6 +29,11 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IShopService, ShopService>();
 builder.Services.AddScoped<IItemService, ItemService>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("SuperAdmin", policy => policy.RequireRole("Admin"));
+});
 
 
 var app = builder.Build();

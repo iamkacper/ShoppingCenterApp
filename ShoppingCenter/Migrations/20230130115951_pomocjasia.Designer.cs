@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingCenter.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using ShoppingCenter.Areas.Identity.Data;
 namespace ShoppingCenter.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    partial class IdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20230130115951_pomocjasia")]
+    partial class pomocjasia
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,13 +54,13 @@ namespace ShoppingCenter.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "126c195b-2c4a-466e-85fa-e33799c25af5",
+                            Id = "be250f84-1cc6-4b4f-b459-8d42883d7d8b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "d4624c18-7d03-4ff9-b4df-00f45feafca1",
+                            Id = "a9ddfddf-14e6-4203-9de6-b0518b70460d",
                             Name = "User",
                             NormalizedName = "USER"
                         });
