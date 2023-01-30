@@ -16,7 +16,7 @@ namespace ShoppingCenter.Controllers
             _service = service;
         }
 
-        [HttpGet] // działa 
+        [HttpGet] 
         [Route("{id}")]
         public IActionResult GetById(int id)
         {
@@ -28,7 +28,7 @@ namespace ShoppingCenter.Controllers
             return Ok(item);
         }
 
-        [HttpDelete] // działa
+        [HttpDelete] 
         [Route("{id}")]
         public IActionResult Delete(int id)
         {
@@ -53,7 +53,7 @@ namespace ShoppingCenter.Controllers
             return Created($"/api/item/{itemVm.ItemId}", itemVm);
         }
 
-        [HttpPut] // działa
+        [HttpPut] 
         [Route("{id}")]
         public IActionResult Update([FromRoute] int id, [FromBody] ItemVm itemVm)
         {

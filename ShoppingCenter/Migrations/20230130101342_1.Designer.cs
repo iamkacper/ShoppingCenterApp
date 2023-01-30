@@ -12,8 +12,8 @@ using ShoppingCenter.Areas.Identity.Data;
 namespace ShoppingCenter.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230129161828_12312")]
-    partial class _12312
+    [Migration("20230130101342_1")]
+    partial class _1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
